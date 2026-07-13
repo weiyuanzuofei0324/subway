@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
@@ -8,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -36,7 +38,10 @@ export default function LoginScreen() {
       setLoading(true);
       await login(account.trim(), password);
     } catch (error) {
-      Alert.alert('登录失败', '账号或密码不正确');
+      const message = axios.isAxiosError<{ message?: string }>(error)
+        ? error.response?.data?.message ?? '无法连接后端服务，请确认 server 已启动'
+        : '登录失败，请稍后再试';
+      Alert.alert('登录失败', message);
     } finally {
       setLoading(false);
     }
@@ -47,53 +52,55 @@ export default function LoginScreen() {
       <KeyboardAvoidingView
         behavior={Platform.select({ ios: 'padding', android: undefined })}
         style={styles.container}>
-        <View style={styles.logoWrap}>
-          <Image source={logo} style={styles.logo} contentFit="contain" />
-        </View>
-
-        <View style={styles.form}>
-          <View style={styles.inputRow}>
-            <SymbolView name={{ ios: 'person', android: 'person', web: 'person' }} size={30} tintColor="#8d929d" />
-            <TextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              placeholder="Account"
-              placeholderTextColor="#9aa0aa"
-              style={styles.input}
-              value={account}
-              onChangeText={setAccount}
-            />
+        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+          <View style={styles.logoWrap}>
+            <Image source={logo} style={styles.logo} contentFit="contain" />
           </View>
 
-          <View style={styles.inputRow}>
-            <SymbolView name={{ ios: 'lock', android: 'lock', web: 'lock' }} size={28} tintColor="#8d929d" />
-            <TextInput
-              placeholder="Password"
-              placeholderTextColor="#9aa0aa"
-              secureTextEntry={secure}
-              style={styles.input}
-              value={password}
-              onChangeText={setPassword}
-            />
-            <Pressable hitSlop={12} onPress={() => setSecure((value) => !value)}>
-              <SymbolView
-                name={{ ios: secure ? 'eye.slash' : 'eye', android: secure ? 'visibility_off' : 'visibility', web: secure ? 'visibility_off' : 'visibility' }}
-                size={28}
-                tintColor="#b4b7bf"
+          <View style={styles.form}>
+            <View style={styles.inputRow}>
+              <SymbolView name={{ ios: 'person', android: 'person', web: 'person' }} size={30} tintColor="#8d929d" />
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholder="Account"
+                placeholderTextColor="#9aa0aa"
+                style={styles.input}
+                value={account}
+                onChangeText={setAccount}
               />
+            </View>
+
+            <View style={styles.inputRow}>
+              <SymbolView name={{ ios: 'lock', android: 'lock', web: 'lock' }} size={28} tintColor="#8d929d" />
+              <TextInput
+                placeholder="Password"
+                placeholderTextColor="#9aa0aa"
+                secureTextEntry={secure}
+                style={styles.input}
+                value={password}
+                onChangeText={setPassword}
+              />
+              <Pressable hitSlop={12} onPress={() => setSecure((value) => !value)}>
+                <SymbolView
+                  name={{ ios: secure ? 'eye.slash' : 'eye', android: secure ? 'visibility_off' : 'visibility', web: secure ? 'visibility_off' : 'visibility' }}
+                  size={28}
+                  tintColor="#b4b7bf"
+                />
+              </Pressable>
+            </View>
+
+            <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]} onPress={handleLogin} disabled={loading}>
+              {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.primaryText}>Login</Text>}
             </Pressable>
+
+            <Link href="/auth/register" asChild>
+              <Pressable style={({ pressed }) => pressed && styles.pressed}>
+                <Text style={styles.linkText}>Register</Text>
+              </Pressable>
+            </Link>
           </View>
-
-          <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]} onPress={handleLogin} disabled={loading}>
-            {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.primaryText}>Login</Text>}
-          </Pressable>
-
-          <Link href="/auth/register" asChild>
-            <Pressable style={({ pressed }) => pressed && styles.pressed}>
-              <Text style={styles.linkText}>Register</Text>
-            </Pressable>
-          </Link>
-        </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -106,19 +113,24 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
     paddingHorizontal: 30,
+  },
+  content: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    paddingBottom: 28,
+    paddingTop: 28,
   },
   logoWrap: {
     alignItems: 'center',
-    marginBottom: 92,
+    marginBottom: 64,
   },
   logo: {
-    height: 190,
-    width: 190,
+    height: 166,
+    width: 166,
   },
   form: {
-    gap: 18,
+    gap: 16,
   },
   inputRow: {
     alignItems: 'center',
@@ -126,7 +138,7 @@ const styles = StyleSheet.create({
     borderRadius: 38,
     borderWidth: 1.5,
     flexDirection: 'row',
-    height: 72,
+    height: 64,
     paddingHorizontal: 24,
     shadowColor: '#3a4a68',
     shadowOpacity: 0.05,
@@ -135,29 +147,29 @@ const styles = StyleSheet.create({
   input: {
     color: '#242b35',
     flex: 1,
-    fontSize: 24,
+    fontSize: 22,
     marginLeft: 22,
   },
   primaryButton: {
     alignItems: 'center',
     backgroundColor: '#0349b8',
     borderRadius: 36,
-    height: 72,
+    height: 64,
     justifyContent: 'center',
-    marginTop: 22,
+    marginTop: 16,
     shadowColor: '#0349b8',
     shadowOpacity: 0.24,
     shadowRadius: 18,
   },
   primaryText: {
     color: '#fff',
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: '600',
   },
   linkText: {
     color: '#064ba9',
-    fontSize: 22,
-    marginTop: 34,
+    fontSize: 20,
+    marginTop: 20,
     textAlign: 'center',
   },
   pressed: {

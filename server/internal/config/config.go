@@ -11,7 +11,7 @@ type Config struct {
 func Load() Config {
 	return Config{
 		Addr:      getEnv("SERVER_ADDR", ":8080"),
-		MySQLDSN:  getEnv("MYSQL_DSN", "root:password@tcp(127.0.0.1:3306)/subway?charset=utf8mb4&parseTime=True&loc=Local"),
+		MySQLDSN:  getEnv("MYSQL_DSN", "root:123456@tcp(127.0.0.1:3306)/subway?charset=utf8mb4&parseTime=True&loc=Local"),
 		JWTSecret: getEnv("JWT_SECRET", "change-this-secret-in-production"),
 	}
 }

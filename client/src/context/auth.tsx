@@ -2,10 +2,42 @@ import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { router, useSegments } from 'expo-router';
 import { createContext, PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react';
+import { Platform } from 'react-native';
 
 import { api, AuthResponse, AuthUser, setAuthToken } from '@/lib/api';
 
 const TOKEN_KEY = 'wuhan_subway_token';
+
+const tokenStorage = {
+  async get() {
+    if (Platform.OS === 'web') {
+      return window.localStorage.getItem(TOKEN_KEY);
+    }
+    if (typeof SecureStore.getItemAsync !== 'function') {
+      return null;
+    }
+    return SecureStore.getItemAsync(TOKEN_KEY);
+  },
+  async set(value: string) {
+    if (Platform.OS === 'web') {
+      window.localStorage.setItem(TOKEN_KEY, value);
+      return;
+    }
+    if (typeof SecureStore.setItemAsync !== 'function') {
+      return;
+    }
+    await SecureStore.setItemAsync(TOKEN_KEY, value);
+  },
+  async delete() {
+    if (Platform.OS === 'web') {
+      window.localStorage.removeItem(TOKEN_KEY);
+      return;
+    }
+    if (typeof SecureStore.deleteItemAsync === 'function') {
+      await SecureStore.deleteItemAsync(TOKEN_KEY);
+    }
+  },
+};
 
 type RegisterInput = {
   username: string;
@@ -34,13 +66,13 @@ export function AuthProvider({ children }: PropsWithChildren) {
     setAuthToken(session.token);
     setToken(session.token);
     setUser(session.user);
-    await SecureStore.setItemAsync(TOKEN_KEY, session.token);
+    await tokenStorage.set(session.token);
   }
 
   useEffect(() => {
     async function restoreSession() {
       try {
-        const storedToken = await SecureStore.getItemAsync(TOKEN_KEY);
+        const storedToken = await tokenStorage.get();
         if (storedToken) {
           setAuthToken(storedToken);
           const { data } = await api.get<{ user: AuthUser }>('/auth/me');
@@ -48,7 +80,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
           setUser(data.user);
         }
       } catch {
-        await SecureStore.deleteItemAsync(TOKEN_KEY);
+        await tokenStorage.delete();
         setAuthToken(null);
       } finally {
         setInitializing(false);
@@ -87,7 +119,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         await persistSession(data);
       },
       async logout() {
-        await SecureStore.deleteItemAsync(TOKEN_KEY);
+        await tokenStorage.delete();
         setAuthToken(null);
         setToken(null);
         setUser(null);

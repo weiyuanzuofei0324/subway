@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
@@ -8,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -37,7 +39,10 @@ export default function RegisterScreen() {
       setLoading(true);
       await register({ username: username.trim(), account: account.trim(), password });
     } catch (error) {
-      Alert.alert('注册失败', '账号可能已存在，请换一个账号');
+      const message = axios.isAxiosError<{ message?: string }>(error)
+        ? error.response?.data?.message ?? '无法连接后端服务，请确认 server 已启动'
+        : '注册失败，请稍后再试';
+      Alert.alert('注册失败', message);
     } finally {
       setLoading(false);
     }
@@ -48,48 +53,50 @@ export default function RegisterScreen() {
       <KeyboardAvoidingView
         behavior={Platform.select({ ios: 'padding', android: undefined })}
         style={styles.container}>
-        <View style={styles.header}>
-          <Pressable hitSlop={12} onPress={() => router.back()}>
-            <SymbolView name={{ ios: 'arrow.left', android: 'arrow_back', web: 'arrow_left' }} size={34} tintColor="#2c343f" />
-          </Pressable>
-          <Text style={styles.title}>Create Account</Text>
-          <View style={styles.headerSpace} />
-        </View>
-
-        <Image source={logo} style={styles.logo} contentFit="contain" />
-
-        <View style={styles.form}>
-          <AuthInput icon="person" placeholder="Username" value={username} onChangeText={setUsername} />
-          <AuthInput icon="person" placeholder="Account" value={account} onChangeText={setAccount} />
-          <View style={styles.inputRow}>
-            <SymbolView name={{ ios: 'lock', android: 'lock', web: 'lock' }} size={28} tintColor="#8d929d" />
-            <TextInput
-              placeholder="Password"
-              placeholderTextColor="#9aa0aa"
-              secureTextEntry={secure}
-              style={styles.input}
-              value={password}
-              onChangeText={setPassword}
-            />
-            <Pressable hitSlop={12} onPress={() => setSecure((value) => !value)}>
-              <SymbolView
-                name={{ ios: secure ? 'eye.slash' : 'eye', android: secure ? 'visibility_off' : 'visibility', web: secure ? 'visibility_off' : 'visibility' }}
-                size={28}
-                tintColor="#b4b7bf"
-              />
+        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+          <View style={styles.header}>
+            <Pressable hitSlop={12} onPress={() => router.back()}>
+              <SymbolView name={{ ios: 'arrow.left', android: 'arrow_back', web: 'arrow_left' }} size={34} tintColor="#2c343f" />
             </Pressable>
+            <Text style={styles.title}>Create Account</Text>
+            <View style={styles.headerSpace} />
           </View>
 
-          <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]} onPress={handleRegister} disabled={loading}>
-            {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.primaryText}>Sign Up</Text>}
-          </Pressable>
+          <Image source={logo} style={styles.logo} contentFit="contain" />
 
-          <Pressable style={({ pressed }) => pressed && styles.pressed} onPress={() => router.replace('/auth/login')}>
-            <Text style={styles.footerText}>
-              Already have an account? <Text style={styles.footerLink}>Login</Text>
-            </Text>
-          </Pressable>
-        </View>
+          <View style={styles.form}>
+            <AuthInput icon="person" placeholder="Username" value={username} onChangeText={setUsername} />
+            <AuthInput icon="person" placeholder="Account" value={account} onChangeText={setAccount} />
+            <View style={styles.inputRow}>
+              <SymbolView name={{ ios: 'lock', android: 'lock', web: 'lock' }} size={28} tintColor="#8d929d" />
+              <TextInput
+                placeholder="Password"
+                placeholderTextColor="#9aa0aa"
+                secureTextEntry={secure}
+                style={styles.input}
+                value={password}
+                onChangeText={setPassword}
+              />
+              <Pressable hitSlop={12} onPress={() => setSecure((value) => !value)}>
+                <SymbolView
+                  name={{ ios: secure ? 'eye.slash' : 'eye', android: secure ? 'visibility_off' : 'visibility', web: secure ? 'visibility_off' : 'visibility' }}
+                  size={28}
+                  tintColor="#b4b7bf"
+                />
+              </Pressable>
+            </View>
+
+            <Pressable style={({ pressed }) => [styles.primaryButton, pressed && styles.pressed]} onPress={handleRegister} disabled={loading}>
+              {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.primaryText}>Sign Up</Text>}
+            </Pressable>
+
+            <Pressable style={({ pressed }) => pressed && styles.pressed} onPress={() => router.replace('/auth/login')}>
+              <Text style={styles.footerText}>
+                Already have an account? <Text style={styles.footerLink}>Login</Text>
+              </Text>
+            </Pressable>
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -128,15 +135,19 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 28,
   },
+  content: {
+    flexGrow: 1,
+    paddingBottom: 28,
+  },
   header: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 20,
+    paddingTop: 18,
   },
   title: {
     color: '#202832',
-    fontSize: 28,
+    fontSize: 27,
     fontWeight: '700',
   },
   headerSpace: {
@@ -144,20 +155,20 @@ const styles = StyleSheet.create({
   },
   logo: {
     alignSelf: 'center',
-    height: 182,
-    marginBottom: 54,
-    marginTop: 108,
-    width: 182,
+    height: 150,
+    marginBottom: 36,
+    marginTop: 66,
+    width: 150,
   },
   form: {
-    gap: 24,
+    gap: 16,
   },
   inputRow: {
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 36,
     flexDirection: 'row',
-    height: 72,
+    height: 64,
     paddingHorizontal: 24,
     shadowColor: '#50617b',
     shadowOffset: { width: 0, height: 9 },
@@ -168,29 +179,29 @@ const styles = StyleSheet.create({
   input: {
     color: '#242b35',
     flex: 1,
-    fontSize: 24,
+    fontSize: 22,
     marginLeft: 22,
   },
   primaryButton: {
     alignItems: 'center',
     backgroundColor: '#0349b8',
     borderRadius: 36,
-    height: 72,
+    height: 64,
     justifyContent: 'center',
-    marginTop: 28,
+    marginTop: 16,
     shadowColor: '#0349b8',
     shadowOpacity: 0.24,
     shadowRadius: 18,
   },
   primaryText: {
     color: '#fff',
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: '600',
   },
   footerText: {
     color: '#9196a0',
-    fontSize: 21,
-    marginTop: 28,
+    fontSize: 18,
+    marginTop: 14,
     textAlign: 'center',
   },
   footerLink: {
