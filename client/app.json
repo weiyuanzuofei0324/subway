@@ -36,8 +36,10 @@
       "expo-secure-store"
     ],
     "experiments": {
-      "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "apiUrl": "http://localhost:8080/api"
     }
   }
 }
