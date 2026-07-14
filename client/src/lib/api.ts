@@ -4,16 +4,27 @@ import { Platform } from 'react-native';
 
 const extra = Constants.expoConfig?.extra as { apiUrl?: string } | undefined;
 
+function isLoopbackURL(url: string) {
+  return url.includes('localhost') || url.includes('127.0.0.1');
+}
+
+function getExpoHost() {
+  const hostUri = Constants.expoConfig?.hostUri ?? Constants.expoGoConfig?.debuggerHost;
+  return hostUri?.split(':')[0];
+}
+
 function getDefaultBaseURL() {
-  if (Platform.OS === 'android') {
-    if (extra?.apiUrl && !extra.apiUrl.includes('localhost') && !extra.apiUrl.includes('127.0.0.1')) {
-      return extra.apiUrl;
-    }
-    return 'http://10.213.21.133:8080/api';
-  }
-  if (extra?.apiUrl) {
+  if (extra?.apiUrl && (Platform.OS === 'web' || !isLoopbackURL(extra.apiUrl))) {
     return extra.apiUrl;
   }
+
+  if (Platform.OS !== 'web') {
+    const expoHost = getExpoHost();
+    if (expoHost) {
+      return `http://${expoHost}:8080/api`;
+    }
+  }
+
   return 'http://localhost:8080/api';
 }
 
