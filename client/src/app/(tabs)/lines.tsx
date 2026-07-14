@@ -1,17 +1,21 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const lines = [
-  { id: '1', name: '1号线', english: 'Line 1', color: '#257ECD' },
-  { id: '2', name: '2号线', english: 'Line 2', color: '#F394C9' },
-  { id: '3', name: '3号线', english: 'Line 3', color: '#EBC16F' },
-  { id: '4', name: '4号线', english: 'Line 4', color: '#98D13C' },
-  { id: '5', name: '5号线', english: 'Line 5', color: '#E7343F' },
-  { id: '6', name: '6号线', english: 'Line 6', color: '#138643' },
-  { id: '7', name: '7号线', english: 'Line 7', color: '#FF9221' },
-  { id: '8', name: '8号线', english: 'Line 8', color: '#99C7D3' },
-  { id: '11', name: '11号线', english: 'Line 11', color: '#B58DD5' },
-  { id: '16', name: '16号线', english: 'Line 16', color: '#55B7A8' },
+  { id: '1', name: '1号线', english: 'Line 1', color: '#3080B7' },
+  { id: '2', name: '2号线', english: 'Line 2', color: '#EB81B9' },
+  { id: '3', name: '3号线', english: 'Line 3', color: '#DAC17D' },
+  { id: '4', name: '4号线', english: 'Line 4', color: '#86B81C' },
+  { id: '5', name: '5号线', english: 'Line 5', color: '#B85A4E' },
+  { id: '6', name: '6号线', english: 'Line 6', color: '#018237' },
+  { id: '7', name: '7号线', english: 'Line 7', color: '#EE782E' },
+  { id: '8', name: '8号线', english: 'Line 8', color: '#99ADAC' },
+  { id: '11', name: '11号线', english: 'Line 11', color: '#FCD600' },
+  { id: '12', name: '12号线', english: 'Line 12', color: '#01A2E2' },
+  { id: '16', name: '16号线', english: 'Line 16', color: '#D10195' },
+  { id: '19', name: '19号线', english: 'Line 19', color: '#00AD8E' },
+  { id: '阳', name: '阳逻线', english: 'Yangluo Line', color: '#D10195' },
 ];
 
 const lineRows = Array.from({ length: Math.ceil(lines.length / 2) }, (_, index) =>
@@ -52,13 +56,21 @@ export default function LinesScreen() {
           {lineRows.map((row) => (
             <View key={row.map((line) => line.id).join('-')} style={styles.row}>
               {row.map((line) => (
-                <View key={line.id} style={styles.card}>
+                <Pressable
+                  key={line.id}
+                  style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+                  onPress={() =>
+                    router.push({
+                      pathname: '/lines/[lineName]',
+                      params: { lineName: line.name },
+                    })
+                  }>
                   <View style={[styles.lineBadge, { borderColor: line.color }]}>
                     <Text style={styles.lineNumber}>{line.id}</Text>
                   </View>
                   <Text style={styles.lineName}>{line.name}</Text>
                   <Text style={styles.lineEnglish}>{line.english}</Text>
-                </View>
+                </Pressable>
               ))}
               {row.length === 1 ? <View style={styles.cardPlaceholder} /> : null}
             </View>
@@ -154,6 +166,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.16,
     shadowRadius: 10,
     width: '47%',
+  },
+  cardPressed: {
+    opacity: 0.72,
+    transform: [{ scale: 0.98 }],
   },
   cardPlaceholder: {
     width: '47%',

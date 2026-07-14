@@ -10,6 +10,7 @@ import (
 	"server/internal/auth"
 	"server/internal/config"
 	"server/internal/database"
+	"server/internal/subway"
 )
 
 func main() {
@@ -19,7 +20,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("connect mysql: %v", err)
 	}
-	if err := db.AutoMigrate(&auth.User{}); err != nil {
+	if err := db.AutoMigrate(&auth.User{}, &subway.Route{}, &subway.Station{}, &subway.RouteStation{}); err != nil {
 		log.Fatalf("migrate database: %v", err)
 	}
 
@@ -31,6 +32,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": "ok"})
 	})
 	auth.NewHandler(db, cfg.JWTSecret).RegisterRoutes(api)
+	subway.NewHandler(db).RegisterRoutes(api)
 
 	log.Printf("server listening on %s", cfg.Addr)
 	if err := router.Run(cfg.Addr); err != nil {
