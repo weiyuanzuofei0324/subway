@@ -51,6 +51,7 @@ type AuthContextValue = {
   user: AuthUser | null;
   login: (account: string, password: string) => Promise<void>;
   register: (input: RegisterInput) => Promise<void>;
+  changePassword: (currentPassword: string, newPassword: string) => Promise<void>;
   logout: () => Promise<void>;
 };
 
@@ -118,6 +119,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
         const { data } = await api.post<AuthResponse>('/auth/register', input);
         await persistSession(data);
       },
+      async changePassword(currentPassword, newPassword) {
+        await api.post('/auth/password', { currentPassword, newPassword });
+      },
       async logout() {
         await tokenStorage.delete();
         setAuthToken(null);
@@ -128,6 +132,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
     }),
     [initializing, token, user],
   );
+
+  if (initializing) {
+    return null;
+  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

@@ -24,6 +24,7 @@ func (h *Handler) RegisterRoutes(router *gin.RouterGroup) {
 	auth.POST("/register", h.register)
 	auth.POST("/login", h.login)
 	auth.GET("/me", h.requireAuth, h.me)
+	auth.POST("/password", h.requireAuth, h.changePassword)
 }
 
 type registerRequest struct {
@@ -35,6 +36,11 @@ type registerRequest struct {
 type loginRequest struct {
 	Account  string `json:"account" binding:"required"`
 	Password string `json:"password" binding:"required"`
+}
+
+type changePasswordRequest struct {
+	CurrentPassword string `json:"currentPassword" binding:"required"`
+	NewPassword     string `json:"newPassword" binding:"required,min=6,max=72"`
 }
 
 func (h *Handler) register(c *gin.Context) {
@@ -95,6 +101,34 @@ func (h *Handler) login(c *gin.Context) {
 func (h *Handler) me(c *gin.Context) {
 	user := c.MustGet("user").(User)
 	c.JSON(http.StatusOK, gin.H{"user": ToUserDTO(user)})
+}
+
+func (h *Handler) changePassword(c *gin.Context) {
+	user := c.MustGet("user").(User)
+
+	var req changePasswordRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "invalid request"})
+		return
+	}
+
+	if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(req.CurrentPassword)); err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "current password is incorrect"})
+		return
+	}
+
+	hash, err := bcrypt.GenerateFromPassword([]byte(req.NewPassword), bcrypt.DefaultCost)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "failed to hash password"})
+		return
+	}
+
+	if err := h.db.Model(&user).Update("password_hash", string(hash)).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "failed to update password"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "password updated"})
 }
 
 func (h *Handler) respondWithToken(c *gin.Context, user User) {
