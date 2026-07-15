@@ -20,6 +20,9 @@ func (h *Handler) RegisterRoutes(router *gin.RouterGroup) {
 	routes := router.Group("/routes")
 	routes.GET("", h.listRoutes)
 	routes.GET("/:lineName", h.getRoute)
+
+	stations := router.Group("/stations")
+	stations.GET("/:id", h.getStation)
 }
 
 type RouteDTO struct {
@@ -42,6 +45,24 @@ type StationDTO struct {
 	Pinyin         string     `json:"pinyin"`
 	Coords         string     `json:"coords"`
 	TransferRoutes []RouteDTO `json:"transferRoutes"`
+}
+
+type StationDetailDTO struct {
+	ID         uint           `json:"id"`
+	Name       string         `json:"name"`
+	Pinyin     string         `json:"pinyin"`
+	Coords     string         `json:"coords"`
+	Routes     []RouteDTO     `json:"routes"`
+	Timetables []TimetableDTO `json:"timetables"`
+}
+
+type TimetableDTO struct {
+	ID           uint   `json:"id"`
+	Direction    string `json:"direction"`
+	WorkdayFirst string `json:"workdayFirst"`
+	WorkdayLast  string `json:"workdayLast"`
+	HolidayFirst string `json:"holidayFirst"`
+	HolidayLast  string `json:"holidayLast"`
 }
 
 func (h *Handler) listRoutes(c *gin.Context) {
@@ -143,4 +164,54 @@ func (h *Handler) findTransferRoutes(routeID uint, stationIDs []uint) (map[uint]
 	}
 
 	return result, nil
+}
+
+func (h *Handler) getStation(c *gin.Context) {
+	var station Station
+	err := h.db.
+		Preload("RouteLinks.Route").
+		Preload("Timetables", func(db *gorm.DB) *gorm.DB {
+			return db.Order("id ASC")
+		}).
+		First(&station, c.Param("id")).Error
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			c.JSON(http.StatusNotFound, gin.H{"message": "station not found"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "failed to load station"})
+		return
+	}
+
+	routes := make([]RouteDTO, 0, len(station.RouteLinks))
+	for _, link := range station.RouteLinks {
+		routes = append(routes, RouteDTO{
+			ID:       link.Route.ID,
+			LineName: link.Route.LineName,
+			Color:    link.Route.Color,
+		})
+	}
+
+	timetables := make([]TimetableDTO, 0, len(station.Timetables))
+	for _, timetable := range station.Timetables {
+		timetables = append(timetables, TimetableDTO{
+			ID:           timetable.ID,
+			Direction:    timetable.Direction,
+			WorkdayFirst: timetable.WorkdayFirst,
+			WorkdayLast:  timetable.WorkdayLast,
+			HolidayFirst: timetable.HolidayFirst,
+			HolidayLast:  timetable.HolidayLast,
+		})
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"station": StationDetailDTO{
+			ID:         station.ID,
+			Name:       station.Name,
+			Pinyin:     station.Pinyin,
+			Coords:     station.Coords,
+			Routes:     routes,
+			Timetables: timetables,
+		},
+	})
 }

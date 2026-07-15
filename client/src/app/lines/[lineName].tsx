@@ -125,7 +125,15 @@ export default function LineDetailScreen() {
               </View>
             ) : null}
             {visibleStations.map((station, index) => (
-              <View key={`${station.sequence}-${station.id}`} style={styles.stationRow}>
+              <Pressable
+                key={`${station.sequence}-${station.id}`}
+                style={({ pressed }) => [styles.stationRow, pressed && styles.stationRowPressed]}
+                onPress={() =>
+                  router.push({
+                    pathname: '/stations/[stationId]',
+                    params: { stationId: String(station.id) },
+                  })
+                }>
                 <View style={styles.timeline}>
                   <View style={[styles.stationDot, { borderColor: color }]} />
                   {index < visibleStations.length - 1 ? <View style={[styles.track, { backgroundColor: color }]} /> : null}
@@ -145,7 +153,7 @@ export default function LineDetailScreen() {
                   </View>
                   <Text style={styles.stationMeta}>{station.pinyin}</Text>
                 </View>
-              </View>
+              </Pressable>
             ))}
           </View>
         )}
@@ -263,6 +271,9 @@ const styles = StyleSheet.create({
   stationRow: {
     flexDirection: 'row',
     minHeight: 72,
+  },
+  stationRowPressed: {
+    opacity: 0.68,
   },
   timeline: {
     alignItems: 'center',

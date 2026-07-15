@@ -20,7 +20,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("connect mysql: %v", err)
 	}
-	if err := db.AutoMigrate(&auth.User{}, &subway.Route{}, &subway.Station{}, &subway.RouteStation{}); err != nil {
+	if err := db.AutoMigrate(&auth.User{}, &subway.Route{}, &subway.Station{}, &subway.RouteStation{}, &subway.Timetable{}); err != nil {
 		log.Fatalf("migrate database: %v", err)
 	}
 

@@ -17,6 +17,7 @@ export default function RootLayout() {
           <Stack.Screen name="auth/register" />
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="lines/[lineName]" />
+          <Stack.Screen name="stations/[stationId]" />
         </Stack>
       </AuthProvider>
     </GestureHandlerRootView>

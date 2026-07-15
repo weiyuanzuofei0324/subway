@@ -12,8 +12,8 @@ import (
 )
 
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Fprintln(os.Stderr, "usage: go run ./cmd/seed <subway-json-path>")
+	if len(os.Args) != 3 {
+		fmt.Fprintln(os.Stderr, "usage: go run ./cmd/seed <subway|timetable> <json-path>")
 		os.Exit(1)
 	}
 
@@ -23,13 +23,25 @@ func main() {
 		log.Fatalf("connect mysql: %v", err)
 	}
 
-	if err := db.AutoMigrate(&auth.User{}, &subway.Route{}, &subway.Station{}, &subway.RouteStation{}); err != nil {
+	if err := db.AutoMigrate(&auth.User{}, &subway.Route{}, &subway.Station{}, &subway.RouteStation{}, &subway.Timetable{}); err != nil {
 		log.Fatalf("migrate database: %v", err)
 	}
 
-	if err := subway.SeedSubwayData(db, os.Args[1]); err != nil {
-		log.Fatalf("seed subway data: %v", err)
+	seedType := os.Args[1]
+	jsonPath := os.Args[2]
+
+	switch seedType {
+	case "subway":
+		if err := subway.SeedSubwayData(db, jsonPath); err != nil {
+			log.Fatalf("seed subway data: %v", err)
+		}
+	case "timetable":
+		if err := subway.SeedTimetableData(db, jsonPath); err != nil {
+			log.Fatalf("seed timetable data: %v", err)
+		}
+	default:
+		log.Fatalf("unknown seed type %q, expected subway or timetable", seedType)
 	}
 
-	log.Println("seed subway data: ok")
+	log.Printf("seed %s data: ok", seedType)
 }
