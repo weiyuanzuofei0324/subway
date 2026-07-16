@@ -1,6 +1,7 @@
 # 第一阶段：编译环境
-FROM golang:1.23-alpine AS builder
+FROM registry.cn-hangzhou.aliyuncs.com/library/golang:1.23-alpine AS builder
 WORKDIR /app
+ENV GOPROXY=https://goproxy.cn,direct
 
 # 复制依赖描述文件并下载
 COPY go.mod go.sum ./
