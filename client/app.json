@@ -40,7 +40,7 @@
       "reactCompiler": true
     },
     "extra": {
-      "apiUrl": "http://localhost:8080/api",
+      "apiUrl": "http://8.148.10.177:8080/api",
       "router": {},
       "eas": {
         "projectId": "5aed26f2-2321-42db-9672-fc61ac2eea6b"

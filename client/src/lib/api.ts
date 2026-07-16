@@ -4,17 +4,13 @@ import { Platform } from 'react-native';
 
 const extra = Constants.expoConfig?.extra as { apiUrl?: string } | undefined;
 
-function isLoopbackURL(url: string) {
-  return url.includes('localhost') || url.includes('127.0.0.1');
-}
-
 function getExpoHost() {
   const hostUri = Constants.expoConfig?.hostUri ?? Constants.expoGoConfig?.debuggerHost;
   return hostUri?.split(':')[0];
 }
 
 function getDefaultBaseURL() {
-  if (extra?.apiUrl && (Platform.OS === 'web' || !isLoopbackURL(extra.apiUrl))) {
+  if (extra?.apiUrl) {
     return extra.apiUrl;
   }
 
