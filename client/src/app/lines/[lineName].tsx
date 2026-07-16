@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,6 +11,7 @@ type Station = {
   name: string;
   pinyin: string;
   coords: string;
+  routes: RouteSummary[] | null;
   transferRoutes: RouteSummary[] | null;
 };
 
@@ -29,12 +30,9 @@ type RouteDetail = {
 
 export default function LineDetailScreen() {
   const params = useLocalSearchParams<{ lineName?: string | string[] }>();
-  const lineName = useMemo(() => {
-    const value = params.lineName;
-    return Array.isArray(value) ? value[0] : value;
-  }, [params.lineName]);
+  const value = params.lineName;
+  const lineName = Array.isArray(value) ? value[0] : value;
   const [routeDetail, setRouteDetail] = useState<RouteDetail | null>(null);
-  const [activeTab, setActiveTab] = useState<'stations' | 'transfers'>('stations');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -72,11 +70,7 @@ export default function LineDetailScreen() {
 
   const title = routeDetail?.lineName ?? lineName ?? '线路详情';
   const color = routeDetail?.color ?? '#3080B7';
-  const transferStations = useMemo(
-    () => routeDetail?.stations.filter((station) => getTransferRoutes(station).length > 0) ?? [],
-    [routeDetail],
-  );
-  const visibleStations = activeTab === 'transfers' ? transferStations : routeDetail?.stations ?? [];
+  const visibleStations = routeDetail?.stations ?? [];
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
@@ -93,19 +87,6 @@ export default function LineDetailScreen() {
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.subtitle}>{routeDetail ? `${routeDetail.stations.length} 座车站` : '武汉地铁线路'}</Text>
           </View>
-        </View>
-
-        <View style={styles.tabs}>
-          <Pressable
-            style={[styles.tabButton, activeTab === 'stations' && styles.tabButtonActive]}
-            onPress={() => setActiveTab('stations')}>
-            <Text style={[styles.tabText, activeTab === 'stations' && styles.tabTextActive]}>车站</Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tabButton, activeTab === 'transfers' && styles.tabButtonActive]}
-            onPress={() => setActiveTab('transfers')}>
-            <Text style={[styles.tabText, activeTab === 'transfers' && styles.tabTextActive]}>换乘</Text>
-          </Pressable>
         </View>
 
         {loading ? (
@@ -141,9 +122,9 @@ export default function LineDetailScreen() {
                 <View style={styles.stationInfo}>
                   <View style={styles.stationTitleRow}>
                     <Text style={styles.stationName}>{station.name}</Text>
-                    {getTransferRoutes(station).length > 0 ? (
+                    {getDisplayTransferRoutes(station, title).length > 0 ? (
                       <View style={styles.transferBadges}>
-                        {getTransferRoutes(station).map((route) => (
+                        {getDisplayTransferRoutes(station, title).map((route) => (
                           <View key={route.id} style={[styles.transferBadge, { backgroundColor: route.color }]}>
                             <Text style={styles.transferBadgeText}>{formatLineNumber(route.lineName)}</Text>
                           </View>
@@ -167,13 +148,18 @@ function normalizeRouteDetail(route: RouteDetail): RouteDetail {
     ...route,
     stations: (route.stations ?? []).map((station) => ({
       ...station,
+      routes: station.routes ?? [],
       transferRoutes: station.transferRoutes ?? [],
     })),
   };
 }
 
-function getTransferRoutes(station: Station) {
-  return station.transferRoutes ?? [];
+function getDisplayTransferRoutes(station: Station, currentLineName: string) {
+  const transferRoutes = station.transferRoutes ?? [];
+  if (transferRoutes.length > 0) {
+    return transferRoutes;
+  }
+  return (station.routes ?? []).filter((route) => route.lineName !== currentLineName);
 }
 
 function formatLineNumber(lineName: string) {
@@ -232,27 +218,6 @@ const styles = StyleSheet.create({
     color: '#5A6C7E',
     fontSize: 16,
     marginTop: 5,
-  },
-  tabs: {
-    backgroundColor: '#F8FAFC',
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  tabButton: {
-    alignItems: 'center',
-    flex: 1,
-    paddingVertical: 12,
-  },
-  tabButtonActive: {
-    backgroundColor: '#FFFFFF',
-  },
-  tabText: {
-    color: '#111827',
-    fontSize: 22,
-    fontWeight: '900',
-  },
-  tabTextActive: {
-    color: '#000000',
   },
   stateBox: {
     alignItems: 'center',

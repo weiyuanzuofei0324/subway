@@ -2,6 +2,7 @@ package subway
 
 import (
 	"errors"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,14 +10,21 @@ import (
 )
 
 type Handler struct {
-	db *gorm.DB
+	db     *gorm.DB
+	engine *Engine
 }
 
 func NewHandler(db *gorm.DB) *Handler {
-	return &Handler{db: db}
+	engine, err := NewEngine(db)
+	if err != nil {
+		return &Handler{db: db}
+	}
+	return &Handler{db: db, engine: engine}
 }
 
 func (h *Handler) RegisterRoutes(router *gin.RouterGroup) {
+	router.GET("/route", h.findRoute)
+
 	routes := router.Group("/routes")
 	routes.GET("", h.listRoutes)
 	routes.GET("/:lineName", h.getRoute)
@@ -44,6 +52,7 @@ type StationDTO struct {
 	Name           string     `json:"name"`
 	Pinyin         string     `json:"pinyin"`
 	Coords         string     `json:"coords"`
+	Routes         []RouteDTO `json:"routes"`
 	TransferRoutes []RouteDTO `json:"transferRoutes"`
 }
 
@@ -63,6 +72,33 @@ type TimetableDTO struct {
 	WorkdayLast  string `json:"workdayLast"`
 	HolidayFirst string `json:"holidayFirst"`
 	HolidayLast  string `json:"holidayLast"`
+}
+
+func (h *Handler) findRoute(c *gin.Context) {
+	if h.engine == nil {
+		c.JSON(http.StatusServiceUnavailable, gin.H{"message": "route engine is not ready"})
+		return
+	}
+
+	from := c.Query("from")
+	to := c.Query("to")
+	departureTime := c.DefaultQuery("departure_time", "08:00")
+	strategy := c.DefaultQuery("strategy", "fastest")
+	if strategy != "fastest" && strategy != "least_transfers" {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "strategy must be fastest or least_transfers"})
+		return
+	}
+
+	steps, summary, err := h.engine.FindRoute(from, to, departureTime, strategy)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"summary": summary,
+		"steps":   steps,
+	})
 }
 
 func (h *Handler) listRoutes(c *gin.Context) {
@@ -91,6 +127,7 @@ func (h *Handler) getRoute(c *gin.Context) {
 			return db.Order("route_stations.sequence ASC")
 		}).
 		Preload("Stations.Station").
+		Preload("Stations.Station.Routes").
 		Where("line_name = ?", c.Param("lineName")).
 		First(&route).Error
 	if err != nil {
@@ -101,24 +138,21 @@ func (h *Handler) getRoute(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "failed to load route"})
 		return
 	}
-
-	stationIDs := make([]uint, 0, len(route.Stations))
-	for _, link := range route.Stations {
-		stationIDs = append(stationIDs, link.StationID)
-	}
-
-	transferRoutes, err := h.findTransferRoutes(route.ID, stationIDs)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "failed to load transfer routes"})
-		return
-	}
+	log.Printf("[route-detail] route=%s id=%d station_count=%d", route.LineName, route.ID, len(route.Stations))
 
 	stations := make([]StationDTO, 0, len(route.Stations))
 	for _, link := range route.Stations {
-		routes := transferRoutes[link.StationID]
-		if routes == nil {
-			routes = []RouteDTO{}
-		}
+		routes := routeDTOs(link.Station.Routes)
+		transferRoutes := transferRouteDTOs(link.Station.Routes, route.ID)
+		log.Printf(
+			"[route-detail] station=%s station_id=%d routes=%d route_names=%v transfer_routes=%d transfer_names=%v",
+			link.Station.Name,
+			link.Station.ID,
+			len(routes),
+			routeNames(routes),
+			len(transferRoutes),
+			routeNames(transferRoutes),
+		)
 
 		stations = append(stations, StationDTO{
 			ID:             link.Station.ID,
@@ -126,7 +160,8 @@ func (h *Handler) getRoute(c *gin.Context) {
 			Name:           link.Station.Name,
 			Pinyin:         link.Station.Pinyin,
 			Coords:         link.Station.Coords,
-			TransferRoutes: routes,
+			Routes:         routes,
+			TransferRoutes: transferRoutes,
 		})
 	}
 
@@ -140,35 +175,10 @@ func (h *Handler) getRoute(c *gin.Context) {
 	})
 }
 
-func (h *Handler) findTransferRoutes(routeID uint, stationIDs []uint) (map[uint][]RouteDTO, error) {
-	result := make(map[uint][]RouteDTO)
-	if len(stationIDs) == 0 {
-		return result, nil
-	}
-
-	var links []RouteStation
-	if err := h.db.
-		Preload("Route").
-		Where("station_id IN ? AND route_id <> ?", stationIDs, routeID).
-		Order("route_id ASC").
-		Find(&links).Error; err != nil {
-		return nil, err
-	}
-
-	for _, link := range links {
-		result[link.StationID] = append(result[link.StationID], RouteDTO{
-			ID:       link.Route.ID,
-			LineName: link.Route.LineName,
-			Color:    link.Route.Color,
-		})
-	}
-
-	return result, nil
-}
-
 func (h *Handler) getStation(c *gin.Context) {
 	var station Station
 	err := h.db.
+		Preload("Routes").
 		Preload("RouteLinks.Route").
 		Preload("Timetables", func(db *gorm.DB) *gorm.DB {
 			return db.Order("id ASC")
@@ -183,13 +193,15 @@ func (h *Handler) getStation(c *gin.Context) {
 		return
 	}
 
-	routes := make([]RouteDTO, 0, len(station.RouteLinks))
-	for _, link := range station.RouteLinks {
-		routes = append(routes, RouteDTO{
-			ID:       link.Route.ID,
-			LineName: link.Route.LineName,
-			Color:    link.Route.Color,
-		})
+	routes := routeDTOs(station.Routes)
+	if len(routes) == 0 {
+		for _, link := range station.RouteLinks {
+			routes = append(routes, RouteDTO{
+				ID:       link.Route.ID,
+				LineName: link.Route.LineName,
+				Color:    link.Route.Color,
+			})
+		}
 	}
 
 	timetables := make([]TimetableDTO, 0, len(station.Timetables))
@@ -214,4 +226,39 @@ func (h *Handler) getStation(c *gin.Context) {
 			Timetables: timetables,
 		},
 	})
+}
+
+func routeDTOs(routes []Route) []RouteDTO {
+	items := make([]RouteDTO, 0, len(routes))
+	for _, route := range routes {
+		items = append(items, RouteDTO{
+			ID:       route.ID,
+			LineName: route.LineName,
+			Color:    route.Color,
+		})
+	}
+	return items
+}
+
+func transferRouteDTOs(routes []Route, currentRouteID uint) []RouteDTO {
+	items := make([]RouteDTO, 0, len(routes))
+	for _, route := range routes {
+		if route.ID == currentRouteID {
+			continue
+		}
+		items = append(items, RouteDTO{
+			ID:       route.ID,
+			LineName: route.LineName,
+			Color:    route.Color,
+		})
+	}
+	return items
+}
+
+func routeNames(routes []RouteDTO) []string {
+	names := make([]string, 0, len(routes))
+	for _, route := range routes {
+		names = append(names, route.LineName)
+	}
+	return names
 }

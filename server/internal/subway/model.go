@@ -10,16 +10,19 @@ type Route struct {
 type Station struct {
 	ID         uint           `gorm:"primaryKey" json:"id"`
 	Name       string         `gorm:"size:64;uniqueIndex;not null" json:"name"`
+	NameEn     string         `gorm:"column:name_en;size:128" json:"nameEn"`
 	Pinyin     string         `gorm:"size:128;not null" json:"pinyin"`
 	Coords     string         `gorm:"size:64;not null" json:"coords"`
+	Routes     []Route        `gorm:"many2many:route_stations;foreignKey:ID;joinForeignKey:StationID;References:ID;joinReferences:RouteID" json:"routes,omitempty"`
 	RouteLinks []RouteStation `gorm:"foreignKey:StationID" json:"routeLinks,omitempty"`
 	Timetables []Timetable    `gorm:"foreignKey:StationID" json:"timetables,omitempty"`
 }
 
 type RouteStation struct {
-	RouteID   uint `gorm:"primaryKey;autoIncrement:false" json:"routeId"`
-	StationID uint `gorm:"primaryKey;autoIncrement:false" json:"stationId"`
-	Sequence  int  `gorm:"not null;index" json:"sequence"`
+	RouteID   uint    `gorm:"primaryKey;autoIncrement:false" json:"routeId"`
+	StationID uint    `gorm:"primaryKey;autoIncrement:false" json:"stationId"`
+	Sequence  int     `gorm:"not null;index" json:"sequence"`
+	Distance  float64 `gorm:"not null;default:0" json:"distance"`
 
 	Route   Route   `gorm:"foreignKey:RouteID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"route,omitempty"`
 	Station Station `gorm:"foreignKey:StationID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"station,omitempty"`

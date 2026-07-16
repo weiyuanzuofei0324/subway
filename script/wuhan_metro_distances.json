@@ -1,0 +1,3180 @@
+[
+  {
+    "line_name": "1号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "径河",
+        "name_en": "Jinghe",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 3,
+        "name": "三店",
+        "name_en": "Sandian",
+        "inter_distance_km": 1.11,
+        "accumulated_distance_km": 1.11,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "码头潭公园",
+        "name_en": "Matoutan Park",
+        "inter_distance_km": 1.971,
+        "accumulated_distance_km": 3.081,
+        "district": "Dongxihu",
+        "transfers": [
+          "6号线"
+        ]
+      },
+      {
+        "sequence": 5,
+        "name": "东吴大道",
+        "name_en": "Dongwu Boulevard",
+        "inter_distance_km": 1.037,
+        "accumulated_distance_km": 4.118,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "五环大道",
+        "name_en": "Wuhuan Boulevard",
+        "inter_distance_km": 1.652,
+        "accumulated_distance_km": 5.77,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "额头湾",
+        "name_en": "Etouwan",
+        "inter_distance_km": 1.655,
+        "accumulated_distance_km": 7.425,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 8,
+        "name": "竹叶海",
+        "name_en": "Zhuyehai",
+        "inter_distance_km": 0.944,
+        "accumulated_distance_km": 8.369,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "舵落口",
+        "name_en": "Duoluokou",
+        "inter_distance_km": 0.807,
+        "accumulated_distance_km": 9.176,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 10,
+        "name": "古田一路",
+        "name_en": "Gutian 1st Road",
+        "inter_distance_km": 1.435,
+        "accumulated_distance_km": 10.611,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 11,
+        "name": "古田二路",
+        "name_en": "Gutian 2nd Road",
+        "inter_distance_km": 1.518,
+        "accumulated_distance_km": 12.129,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 12,
+        "name": "古田三路",
+        "name_en": "Gutian 3rd Road",
+        "inter_distance_km": 0.907,
+        "accumulated_distance_km": 13.036,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 13,
+        "name": "古田四路",
+        "name_en": "Gutian 4th Road",
+        "inter_distance_km": 0.795,
+        "accumulated_distance_km": 13.831,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 14,
+        "name": "汉西一路",
+        "name_en": "Hanxi 1st Road",
+        "inter_distance_km": 0.82,
+        "accumulated_distance_km": 14.651,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 15,
+        "name": "宗关",
+        "name_en": "Zongguan",
+        "inter_distance_km": 0.921,
+        "accumulated_distance_km": 15.572,
+        "district": "Qiaokou",
+        "transfers": [
+          "3号线"
+        ]
+      },
+      {
+        "sequence": 16,
+        "name": "太平洋",
+        "name_en": "Taipingyang",
+        "inter_distance_km": 1.58,
+        "accumulated_distance_km": 17.152,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 17,
+        "name": "硚口路",
+        "name_en": "Qiaokou Road",
+        "inter_distance_km": 1.045,
+        "accumulated_distance_km": 18.197,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 18,
+        "name": "崇仁路",
+        "name_en": "Chongren Road",
+        "inter_distance_km": 1.142,
+        "accumulated_distance_km": 19.339,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 19,
+        "name": "利济北路",
+        "name_en": "Liji North Road",
+        "inter_distance_km": 0.88,
+        "accumulated_distance_km": 20.219,
+        "district": "Jianghan/Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 20,
+        "name": "友谊路",
+        "name_en": "Youyi Road",
+        "inter_distance_km": 0.888,
+        "accumulated_distance_km": 21.107,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 21,
+        "name": "循礼门",
+        "name_en": "Xunlimen",
+        "inter_distance_km": 0.986,
+        "accumulated_distance_km": 22.093,
+        "district": "Jiang'an",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 22,
+        "name": "大智路",
+        "name_en": "Dazhi Road",
+        "inter_distance_km": 1.083,
+        "accumulated_distance_km": 23.176,
+        "district": "Jiang'an",
+        "transfers": [
+          "6号线"
+        ]
+      },
+      {
+        "sequence": 23,
+        "name": "三阳路",
+        "name_en": "Sanyang Road",
+        "inter_distance_km": 1.01,
+        "accumulated_distance_km": 24.186,
+        "district": "Jiang'an",
+        "transfers": [
+          "7号线"
+        ]
+      },
+      {
+        "sequence": 24,
+        "name": "黄浦路",
+        "name_en": "Huangpu Road",
+        "inter_distance_km": 1.155,
+        "accumulated_distance_km": 25.341,
+        "district": "Jiang'an",
+        "transfers": [
+          "8号线"
+        ]
+      },
+      {
+        "sequence": 25,
+        "name": "头道街",
+        "name_en": "Toudao Street",
+        "inter_distance_km": 1.203,
+        "accumulated_distance_km": 26.544,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 26,
+        "name": "二七路",
+        "name_en": "Erqi Road",
+        "inter_distance_km": 0.915,
+        "accumulated_distance_km": 27.459,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 27,
+        "name": "徐州新村",
+        "name_en": "Xuzhou­xincun",
+        "inter_distance_km": 0.795,
+        "accumulated_distance_km": 28.254,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 28,
+        "name": "丹水池",
+        "name_en": "Danshuichi",
+        "inter_distance_km": 1.525,
+        "accumulated_distance_km": 29.779,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 29,
+        "name": "新荣",
+        "name_en": "Xinrong",
+        "inter_distance_km": 1.437,
+        "accumulated_distance_km": 31.216,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 30,
+        "name": "堤角",
+        "name_en": "Dijiao",
+        "inter_distance_km": 1.165,
+        "accumulated_distance_km": 32.381,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 31,
+        "name": "滕子岗",
+        "name_en": "Tengzigang",
+        "inter_distance_km": 1.025,
+        "accumulated_distance_km": 33.406,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 32,
+        "name": "滠口新城",
+        "name_en": "Shekou­xincheng",
+        "inter_distance_km": 1.12,
+        "accumulated_distance_km": 34.526,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 33,
+        "name": "汉口北",
+        "name_en": "Hankou North",
+        "inter_distance_km": 3.41,
+        "accumulated_distance_km": 37.936,
+        "district": "Huangpi",
+        "transfers": []
+      }
+    ]
+  },
+  {
+    "line_name": "2号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "天河机场",
+        "name_en": "Tianhe International Airport",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 3,
+        "name": "航空总部",
+        "name_en": "Hangkongzongbu",
+        "inter_distance_km": 6.004,
+        "accumulated_distance_km": 6.004,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "宋家岗",
+        "name_en": "Songjiagang",
+        "inter_distance_km": 1.427,
+        "accumulated_distance_km": 7.431,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "巨龙大道",
+        "name_en": "Julong Boulevard",
+        "inter_distance_km": 2.039,
+        "accumulated_distance_km": 9.47,
+        "district": "Huangpi",
+        "transfers": [
+          "7号线"
+        ]
+      },
+      {
+        "sequence": 6,
+        "name": "盘龙城",
+        "name_en": "Panlongcheng",
+        "inter_distance_km": 1.643,
+        "accumulated_distance_km": 11.113,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "宏图大道",
+        "name_en": "Hongtu Boulevard",
+        "inter_distance_km": 3.946,
+        "accumulated_distance_km": 15.059,
+        "district": "Dongxihu",
+        "transfers": [
+          "3      8号线"
+        ]
+      },
+      {
+        "sequence": 8,
+        "name": "常青城",
+        "name_en": "Changqingcheng",
+        "inter_distance_km": 2.886,
+        "accumulated_distance_km": 17.945,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "金银潭",
+        "name_en": "Jinyintan",
+        "inter_distance_km": 2.012,
+        "accumulated_distance_km": 19.957,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 10,
+        "name": "常青花园",
+        "name_en": "Changqing Huayuan",
+        "inter_distance_km": 1.092,
+        "accumulated_distance_km": 21.049,
+        "district": "Dongxihu",
+        "transfers": [
+          "6号线"
+        ]
+      },
+      {
+        "sequence": 11,
+        "name": "长港路",
+        "name_en": "Changgang Road",
+        "inter_distance_km": 1.725,
+        "accumulated_distance_km": 22.774,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 12,
+        "name": "汉口火车站",
+        "name_en": "Hankou Railway Station",
+        "inter_distance_km": 1.407,
+        "accumulated_distance_km": 24.181,
+        "district": "Jianghan",
+        "transfers": [
+          "10号线"
+        ]
+      },
+      {
+        "sequence": 13,
+        "name": "范湖",
+        "name_en": "Fanhu",
+        "inter_distance_km": 1.216,
+        "accumulated_distance_km": 25.397,
+        "district": "Jianghan",
+        "transfers": [
+          "3号线"
+        ]
+      },
+      {
+        "sequence": 14,
+        "name": "王家墩东",
+        "name_en": "Wangjiadun East",
+        "inter_distance_km": 1.41,
+        "accumulated_distance_km": 26.807,
+        "district": "Jianghan",
+        "transfers": [
+          "7号线"
+        ]
+      },
+      {
+        "sequence": 15,
+        "name": "青年路",
+        "name_en": "Qingnian Road",
+        "inter_distance_km": 1.002,
+        "accumulated_distance_km": 27.809,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 16,
+        "name": "中山公园",
+        "name_en": "Zhongshan Park",
+        "inter_distance_km": 0.946,
+        "accumulated_distance_km": 28.755,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 17,
+        "name": "循礼門",
+        "name_en": "Xunlimen",
+        "inter_distance_km": 1.543,
+        "accumulated_distance_km": 30.298,
+        "district": "Jiang'an/Jianghan",
+        "transfers": [
+          "1号线"
+        ]
+      },
+      {
+        "sequence": 18,
+        "name": "江汉路",
+        "name_en": "Jianghan Road",
+        "inter_distance_km": 0.897,
+        "accumulated_distance_km": 31.195,
+        "district": "Jianghan",
+        "transfers": [
+          "6号线"
+        ]
+      },
+      {
+        "sequence": 19,
+        "name": "积玉桥",
+        "name_en": "Jiyuqiao",
+        "inter_distance_km": 3.292,
+        "accumulated_distance_km": 34.487,
+        "district": "Wuchang",
+        "transfers": [
+          "5号线"
+        ]
+      },
+      {
+        "sequence": 20,
+        "name": "螃蟹岬",
+        "name_en": "Pangxiejia",
+        "inter_distance_km": 1.579,
+        "accumulated_distance_km": 36.066,
+        "district": "Wuchang",
+        "transfers": [
+          "7号线"
+        ]
+      },
+      {
+        "sequence": 21,
+        "name": "小龟山",
+        "name_en": "Xiaoguishan",
+        "inter_distance_km": 0.93,
+        "accumulated_distance_km": 36.996,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 22,
+        "name": "洪山广场",
+        "name_en": "Hongshan Square",
+        "inter_distance_km": 1.168,
+        "accumulated_distance_km": 38.164,
+        "district": "Wuchang",
+        "transfers": [
+          "4号线"
+        ]
+      },
+      {
+        "sequence": 23,
+        "name": "中南路",
+        "name_en": "Zhongnan Road",
+        "inter_distance_km": 0.966,
+        "accumulated_distance_km": 39.13,
+        "district": "Wuchang",
+        "transfers": [
+          "4号线"
+        ]
+      },
+      {
+        "sequence": 24,
+        "name": "宝通寺",
+        "name_en": "Baotong Temple",
+        "inter_distance_km": 1.418,
+        "accumulated_distance_km": 40.548,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 25,
+        "name": "街道口",
+        "name_en": "Jiedaokou",
+        "inter_distance_km": 1.238,
+        "accumulated_distance_km": 41.786,
+        "district": "Hongshan",
+        "transfers": [
+          "8号线"
+        ]
+      },
+      {
+        "sequence": 26,
+        "name": "广埠屯",
+        "name_en": "Guangbutun",
+        "inter_distance_km": 0.951,
+        "accumulated_distance_km": 42.737,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 27,
+        "name": "虎泉",
+        "name_en": "Huquan",
+        "inter_distance_km": 1.613,
+        "accumulated_distance_km": 44.35,
+        "district": "Hongshan",
+        "transfers": [
+          "11号线"
+        ]
+      },
+      {
+        "sequence": 28,
+        "name": "杨家湾",
+        "name_en": "Yangjiawan",
+        "inter_distance_km": 1.442,
+        "accumulated_distance_km": 45.792,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 29,
+        "name": "光谷广场",
+        "name_en": "Optics Valley Square",
+        "inter_distance_km": 1.317,
+        "accumulated_distance_km": 47.109,
+        "district": "Hongshan",
+        "transfers": [
+          "11号线"
+        ]
+      },
+      {
+        "sequence": 30,
+        "name": "珞雄路",
+        "name_en": "Luoxiong Road",
+        "inter_distance_km": 0.794,
+        "accumulated_distance_km": 47.903,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 31,
+        "name": "华中科技大学",
+        "name_en": "Huazhong University of Science and Technology",
+        "inter_distance_km": 1.009,
+        "accumulated_distance_km": 48.912,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 32,
+        "name": "光谷大道",
+        "name_en": "Guanggu Boulevard",
+        "inter_distance_km": 0.817,
+        "accumulated_distance_km": 49.729,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 33,
+        "name": "佳园路",
+        "name_en": "Jiayuan Road",
+        "inter_distance_km": 1.368,
+        "accumulated_distance_km": 51.097,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 34,
+        "name": "武汉东站",
+        "name_en": "Wuhandong Railway Station",
+        "inter_distance_km": 1.487,
+        "accumulated_distance_km": 52.584,
+        "district": "Hongshan",
+        "transfers": [
+          "11号线"
+        ]
+      },
+      {
+        "sequence": 35,
+        "name": "黄龙山路",
+        "name_en": "Huanglongshan Road",
+        "inter_distance_km": 1.059,
+        "accumulated_distance_km": 53.643,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 36,
+        "name": "金融港北",
+        "name_en": "Jinronggang North",
+        "inter_distance_km": 2.038,
+        "accumulated_distance_km": 55.681,
+        "district": "Hongshan/Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 37,
+        "name": "秀湖",
+        "name_en": "Xiuhu",
+        "inter_distance_km": 1.603,
+        "accumulated_distance_km": 57.284,
+        "district": "Hongshan/Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 38,
+        "name": "藏龙东街",
+        "name_en": "Canglong East Street",
+        "inter_distance_km": 1.999,
+        "accumulated_distance_km": 59.283,
+        "district": "Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 39,
+        "name": "佛祖岭",
+        "name_en": "Fozuling",
+        "inter_distance_km": 1.021,
+        "accumulated_distance_km": 60.304,
+        "district": "Jiangxia",
+        "transfers": []
+      }
+    ]
+  },
+  {
+    "line_name": "3号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "沌阳大道",
+        "name_en": "Zhuanyang Boulevard",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "WETDZ[note 1]",
+        "transfers": [
+          "Auto-city T1 Line[note 2]号线"
+        ]
+      },
+      {
+        "sequence": 3,
+        "name": "东风公司",
+        "name_en": "Dongfeng Motor Corporation",
+        "inter_distance_km": 1.449,
+        "accumulated_distance_km": 1.449,
+        "district": "WETDZ",
+        "transfers": [
+          "6号线"
+        ]
+      },
+      {
+        "sequence": 4,
+        "name": "体育中心",
+        "name_en": "Sports Center",
+        "inter_distance_km": 0.842,
+        "accumulated_distance_km": 2.291,
+        "district": "WETDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "三角湖",
+        "name_en": "Sanjiaohu",
+        "inter_distance_km": 1.454,
+        "accumulated_distance_km": 3.745,
+        "district": "WETDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "汉阳客运站",
+        "name_en": "Hanyang Long-Distance Bus Station",
+        "inter_distance_km": 1.563,
+        "accumulated_distance_km": 5.308,
+        "district": "WETDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "四新大道",
+        "name_en": "Sixin Boulevard",
+        "inter_distance_km": 0.928,
+        "accumulated_distance_km": 6.236,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 8,
+        "name": "陶家岭",
+        "name_en": "Taojialing",
+        "inter_distance_km": 1.359,
+        "accumulated_distance_km": 7.595,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "龙阳村",
+        "name_en": "Longyangcun",
+        "inter_distance_km": 0.906,
+        "accumulated_distance_km": 8.501,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 10,
+        "name": "王家湾",
+        "name_en": "Wangjiawan",
+        "inter_distance_km": 1.107,
+        "accumulated_distance_km": 9.608,
+        "district": "Hanyang",
+        "transfers": [
+          "4号线"
+        ]
+      },
+      {
+        "sequence": 11,
+        "name": "宗关",
+        "name_en": "Zongguan",
+        "inter_distance_km": 2.531,
+        "accumulated_distance_km": 12.139,
+        "district": "Qiaokou",
+        "transfers": [
+          "1号线"
+        ]
+      },
+      {
+        "sequence": 12,
+        "name": "双墩",
+        "name_en": "Shuangdun",
+        "inter_distance_km": 0.982,
+        "accumulated_distance_km": 13.121,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 13,
+        "name": "武汉商务区",
+        "name_en": "Wuhan Business District",
+        "inter_distance_km": 1.825,
+        "accumulated_distance_km": 14.946,
+        "district": "Jianghan",
+        "transfers": [
+          "7号线"
+        ]
+      },
+      {
+        "sequence": 14,
+        "name": "云飞路",
+        "name_en": "Yunfei Road",
+        "inter_distance_km": 1.227,
+        "accumulated_distance_km": 16.173,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 15,
+        "name": "范湖",
+        "name_en": "Fanhu",
+        "inter_distance_km": 0.885,
+        "accumulated_distance_km": 17.058,
+        "district": "Jianghan",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 16,
+        "name": "菱角湖",
+        "name_en": "Lingjiaohu",
+        "inter_distance_km": 1.676,
+        "accumulated_distance_km": 18.734,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 17,
+        "name": "香港路",
+        "name_en": "Xianggang Road",
+        "inter_distance_km": 0.932,
+        "accumulated_distance_km": 19.666,
+        "district": "Jiang'an/Jianghan",
+        "transfers": [
+          "6      7号线"
+        ]
+      },
+      {
+        "sequence": 18,
+        "name": "惠济二路",
+        "name_en": "Huiji 2nd Road",
+        "inter_distance_km": 0.934,
+        "accumulated_distance_km": 20.6,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 19,
+        "name": "赵家条",
+        "name_en": "Zhaojiatiao",
+        "inter_distance_km": 0.896,
+        "accumulated_distance_km": 21.496,
+        "district": "Jiang'an",
+        "transfers": [
+          "8号线"
+        ]
+      },
+      {
+        "sequence": 20,
+        "name": "罗家庄",
+        "name_en": "Luojiazhuang",
+        "inter_distance_km": 0.882,
+        "accumulated_distance_km": 22.378,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 21,
+        "name": "二七小路",
+        "name_en": "Erqi Branch Road",
+        "inter_distance_km": 0.759,
+        "accumulated_distance_km": 23.137,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 22,
+        "name": "兴业路",
+        "name_en": "Xingye Road",
+        "inter_distance_km": 1.253,
+        "accumulated_distance_km": 24.39,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 23,
+        "name": "后湖大道",
+        "name_en": "Houhu Boulevard",
+        "inter_distance_km": 1.181,
+        "accumulated_distance_km": 25.571,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 24,
+        "name": "市民之家",
+        "name_en": "Citizens Home",
+        "inter_distance_km": 1.667,
+        "accumulated_distance_km": 27.238,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 25,
+        "name": "宏图大道",
+        "name_en": "Hongtu Boulevard",
+        "inter_distance_km": 2.422,
+        "accumulated_distance_km": 29.66,
+        "district": "Dongxihu",
+        "transfers": [
+          "2      8号线"
+        ]
+      }
+    ]
+  },
+  {
+    "line_name": "4号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "柏林",
+        "name_en": "Bailin",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 3,
+        "name": "新庙村",
+        "name_en": "Xinmiaocun",
+        "inter_distance_km": 1.417,
+        "accumulated_distance_km": 1.417,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "临嶂大道",
+        "name_en": "Linzhang Boulevard",
+        "inter_distance_km": 2.081,
+        "accumulated_distance_km": 3.498,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "蔡甸广场",
+        "name_en": "Caidian Square",
+        "inter_distance_km": 1.241,
+        "accumulated_distance_km": 4.739,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "凤凰路",
+        "name_en": "Fenghuang Road",
+        "inter_distance_km": 2.148,
+        "accumulated_distance_km": 6.887,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "新农",
+        "name_en": "Xinnong",
+        "inter_distance_km": 1.453,
+        "accumulated_distance_km": 8.34,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 8,
+        "name": "知音",
+        "name_en": "Zhiyin",
+        "inter_distance_km": 1.82,
+        "accumulated_distance_km": 10.16,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "集贤",
+        "name_en": "Jixian",
+        "inter_distance_km": 2.011,
+        "accumulated_distance_km": 12.171,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 10,
+        "name": "新天",
+        "name_en": "Xintian",
+        "inter_distance_km": 1.367,
+        "accumulated_distance_km": 13.538,
+        "district": "Caidian",
+        "transfers": []
+      },
+      {
+        "sequence": 11,
+        "name": "黄金口",
+        "name_en": "Huangjinkou",
+        "inter_distance_km": 2.75,
+        "accumulated_distance_km": 16.288,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 12,
+        "name": "孟家铺",
+        "name_en": "Mengjiapu",
+        "inter_distance_km": 2.762,
+        "accumulated_distance_km": 19.05,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 13,
+        "name": "永安堂",
+        "name_en": "Yong'antang",
+        "inter_distance_km": 1.479,
+        "accumulated_distance_km": 20.529,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 14,
+        "name": "玉龙路",
+        "name_en": "Yulong Road",
+        "inter_distance_km": 1.243,
+        "accumulated_distance_km": 21.772,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 15,
+        "name": "王家湾",
+        "name_en": "Wangjiawan",
+        "inter_distance_km": 0.901,
+        "accumulated_distance_km": 22.673,
+        "district": "Hanyang",
+        "transfers": [
+          "3号线"
+        ]
+      },
+      {
+        "sequence": 16,
+        "name": "十里铺",
+        "name_en": "Shilipu",
+        "inter_distance_km": 0.95,
+        "accumulated_distance_km": 23.623,
+        "district": "Hanyang",
+        "transfers": [
+          "12号线"
+        ]
+      },
+      {
+        "sequence": 17,
+        "name": "七里庙",
+        "name_en": "Qilimiao",
+        "inter_distance_km": 1.204,
+        "accumulated_distance_km": 24.827,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 18,
+        "name": "五里墩",
+        "name_en": "Wulidun",
+        "inter_distance_km": 1.124,
+        "accumulated_distance_km": 25.951,
+        "district": "Hanyang",
+        "transfers": [
+          "10号线"
+        ]
+      },
+      {
+        "sequence": 19,
+        "name": "汉阳火车站",
+        "name_en": "Hanyang Railway Station",
+        "inter_distance_km": 1.012,
+        "accumulated_distance_km": 26.963,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 20,
+        "name": "钟家村",
+        "name_en": "Zhongjiacun",
+        "inter_distance_km": 1.574,
+        "accumulated_distance_km": 28.537,
+        "district": "Hanyang",
+        "transfers": [
+          "6号线"
+        ]
+      },
+      {
+        "sequence": 21,
+        "name": "拦江路",
+        "name_en": "Lanjiang Road",
+        "inter_distance_km": 0.834,
+        "accumulated_distance_km": 29.371,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 22,
+        "name": "复兴路",
+        "name_en": "Fuxing Road",
+        "inter_distance_km": 3.278,
+        "accumulated_distance_km": 32.649,
+        "district": "Wuchang",
+        "transfers": [
+          "5号线"
+        ]
+      },
+      {
+        "sequence": 23,
+        "name": "首义路",
+        "name_en": "Shouyi Road",
+        "inter_distance_km": 0.718,
+        "accumulated_distance_km": 33.367,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 24,
+        "name": "武昌火车站",
+        "name_en": "Wuchang Railway Station",
+        "inter_distance_km": 0.897,
+        "accumulated_distance_km": 34.264,
+        "district": "Wuchang",
+        "transfers": [
+          "7号线"
+        ]
+      },
+      {
+        "sequence": 25,
+        "name": "梅苑小区",
+        "name_en": "Meiyuan­xiaoqu",
+        "inter_distance_km": 0.9,
+        "accumulated_distance_km": 35.164,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 26,
+        "name": "中南路",
+        "name_en": "Zhongnan Road",
+        "inter_distance_km": 1.095,
+        "accumulated_distance_km": 36.259,
+        "district": "Wuchang",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 27,
+        "name": "洪山广场",
+        "name_en": "Hongshan Square",
+        "inter_distance_km": 0.966,
+        "accumulated_distance_km": 37.225,
+        "district": "Wuchang",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 28,
+        "name": "楚河汉街",
+        "name_en": "Chuhe Hanjie",
+        "inter_distance_km": 1.077,
+        "accumulated_distance_km": 38.302,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 29,
+        "name": "青鱼嘴",
+        "name_en": "Qingyuzui",
+        "inter_distance_km": 1.226,
+        "accumulated_distance_km": 39.528,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 30,
+        "name": "东亭",
+        "name_en": "Dongting",
+        "inter_distance_km": 1.048,
+        "accumulated_distance_km": 40.576,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 31,
+        "name": "岳家嘴",
+        "name_en": "Yuejiazui",
+        "inter_distance_km": 0.928,
+        "accumulated_distance_km": 41.504,
+        "district": "Hongshan",
+        "transfers": [
+          "8号线"
+        ]
+      },
+      {
+        "sequence": 32,
+        "name": "铁机路",
+        "name_en": "Tieji Road",
+        "inter_distance_km": 1.032,
+        "accumulated_distance_km": 42.536,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 33,
+        "name": "罗家港",
+        "name_en": "Luojiagang",
+        "inter_distance_km": 1.171,
+        "accumulated_distance_km": 43.707,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 34,
+        "name": "园林路",
+        "name_en": "Yuanlin Road",
+        "inter_distance_km": 1.036,
+        "accumulated_distance_km": 44.743,
+        "district": "Hongshan",
+        "transfers": [
+          "12号线"
+        ]
+      },
+      {
+        "sequence": 35,
+        "name": "仁和路",
+        "name_en": "Renhe Road",
+        "inter_distance_km": 1.333,
+        "accumulated_distance_km": 46.076,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 36,
+        "name": "工业四路",
+        "name_en": "Gongye 4th Road",
+        "inter_distance_km": 1.634,
+        "accumulated_distance_km": 47.71,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 37,
+        "name": "杨春湖",
+        "name_en": "Yangchunhu",
+        "inter_distance_km": 1.173,
+        "accumulated_distance_km": 48.883,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 38,
+        "name": "武汉火车站",
+        "name_en": "Wuhan Railway Station",
+        "inter_distance_km": 0.81,
+        "accumulated_distance_km": 49.693,
+        "district": "Hongshan",
+        "transfers": [
+          "5[note 3]      19 [note 4]号线"
+        ]
+      }
+    ]
+  },
+  {
+    "line_name": "5号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "红霞",
+        "name_en": "Hongxia",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 3,
+        "name": "黄家湖（武科大）",
+        "name_en": "Huangjiahu(Wuhan Univ. of Science and Technology)",
+        "inter_distance_km": 1.353,
+        "accumulated_distance_km": 1.353,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "中医药大学",
+        "name_en": "Hubei Univ. of Chinese Medicine",
+        "inter_distance_km": 1.302,
+        "accumulated_distance_km": 2.655,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "白沙六路",
+        "name_en": "Baisha 6th Road",
+        "inter_distance_km": 3.732,
+        "accumulated_distance_km": 6.387,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "光霞",
+        "name_en": "Guangxia",
+        "inter_distance_km": 1.103,
+        "accumulated_distance_km": 7.49,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "张家湾",
+        "name_en": "Zhangjiawan",
+        "inter_distance_km": 1.868,
+        "accumulated_distance_km": 9.358,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 8,
+        "name": "烽火村",
+        "name_en": "Fenghuocun",
+        "inter_distance_km": 1.603,
+        "accumulated_distance_km": 10.961,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "八铺街",
+        "name_en": "Bapu Street",
+        "inter_distance_km": 1.307,
+        "accumulated_distance_km": 12.268,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 10,
+        "name": "复兴路",
+        "name_en": "Fuxing Road",
+        "inter_distance_km": 1.51,
+        "accumulated_distance_km": 13.778,
+        "district": "Wuchang",
+        "transfers": [
+          "4号线"
+        ]
+      },
+      {
+        "sequence": 11,
+        "name": "彭刘杨",
+        "name_en": "Pengliuyang",
+        "inter_distance_km": 0.866,
+        "accumulated_distance_km": 14.644,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 12,
+        "name": "司门口黄鹤楼",
+        "name_en": "Simenkou & Yellow Crane Tower",
+        "inter_distance_km": 0.603,
+        "accumulated_distance_km": 15.247,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 13,
+        "name": "昙华林武胜门",
+        "name_en": "Tanhualin & Wushengmen",
+        "inter_distance_km": 0.878,
+        "accumulated_distance_km": 16.125,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 14,
+        "name": "积玉桥",
+        "name_en": "Jiyuqiao",
+        "inter_distance_km": 0.834,
+        "accumulated_distance_km": 16.959,
+        "district": "Wuchang",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 15,
+        "name": "三层楼",
+        "name_en": "Sancenglou",
+        "inter_distance_km": 1.07,
+        "accumulated_distance_km": 18.029,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 16,
+        "name": "三角路",
+        "name_en": "Sanjiao Road",
+        "inter_distance_km": 1.838,
+        "accumulated_distance_km": 19.867,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 17,
+        "name": "徐家棚",
+        "name_en": "Xujiapeng",
+        "inter_distance_km": 1.261,
+        "accumulated_distance_km": 21.128,
+        "district": "Wuchang",
+        "transfers": [
+          "7      8号线"
+        ]
+      },
+      {
+        "sequence": 18,
+        "name": "杨园铁四院",
+        "name_en": "Yangyuan & Tiesiyuan",
+        "inter_distance_km": 1.213,
+        "accumulated_distance_km": 22.341,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 19,
+        "name": "余家头",
+        "name_en": "Yujiatou",
+        "inter_distance_km": 1.283,
+        "accumulated_distance_km": 23.624,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 20,
+        "name": "科普公园",
+        "name_en": "Science Park",
+        "inter_distance_km": 1.601,
+        "accumulated_distance_km": 25.225,
+        "district": "Qingshan",
+        "transfers": []
+      },
+      {
+        "sequence": 21,
+        "name": "建设二路",
+        "name_en": "Jianshe 2nd Road",
+        "inter_distance_km": 1.374,
+        "accumulated_distance_km": 26.599,
+        "district": "Qingshan",
+        "transfers": []
+      },
+      {
+        "sequence": 22,
+        "name": "和平公园",
+        "name_en": "Heping Park",
+        "inter_distance_km": 1.231,
+        "accumulated_distance_km": 27.83,
+        "district": "Qingshan",
+        "transfers": []
+      },
+      {
+        "sequence": 23,
+        "name": "红钢城",
+        "name_en": "Honggangcheng",
+        "inter_distance_km": 1.627,
+        "accumulated_distance_km": 29.457,
+        "district": "Qingshan",
+        "transfers": []
+      },
+      {
+        "sequence": 24,
+        "name": "青宜居",
+        "name_en": "Qingyiju",
+        "inter_distance_km": 1.857,
+        "accumulated_distance_km": 31.314,
+        "district": "Qingshan",
+        "transfers": []
+      },
+      {
+        "sequence": 25,
+        "name": "工人村",
+        "name_en": "Gongrencun",
+        "inter_distance_km": 1.555,
+        "accumulated_distance_km": 32.869,
+        "district": "Qingshan",
+        "transfers": []
+      },
+      {
+        "sequence": 26,
+        "name": "武钢",
+        "name_en": "Wugang",
+        "inter_distance_km": 1.884,
+        "accumulated_distance_km": 34.753,
+        "district": "Qingshan",
+        "transfers": []
+      },
+      {
+        "sequence": 27,
+        "name": "厂前",
+        "name_en": "Changqian",
+        "inter_distance_km": 1.432,
+        "accumulated_distance_km": 36.185,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 28,
+        "name": "武汉站东广场",
+        "name_en": "East Square of Wuhan Railway Station",
+        "inter_distance_km": 1.031,
+        "accumulated_distance_km": 37.216,
+        "district": "Hongshan",
+        "transfers": [
+          "4[note 5]      19[note 6]号线"
+        ]
+      }
+    ]
+  },
+  {
+    "line_name": "6号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "新城十一路",
+        "name_en": "Xincheng 11th Road",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 3,
+        "name": "码头潭公园",
+        "name_en": "Matoutan Park",
+        "inter_distance_km": 1.496,
+        "accumulated_distance_km": 1.496,
+        "district": "Dongxihu",
+        "transfers": [
+          "1号线"
+        ]
+      },
+      {
+        "sequence": 4,
+        "name": "五环体育中心",
+        "name_en": "Five Rings Sports Center",
+        "inter_distance_km": 1.176,
+        "accumulated_distance_km": 2.672,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "二雅路",
+        "name_en": "Erya Road",
+        "inter_distance_km": 1.57,
+        "accumulated_distance_km": 4.242,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "海口三路",
+        "name_en": "Haikou 3rd Road",
+        "inter_distance_km": 1.412,
+        "accumulated_distance_km": 5.654,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "金银湖公园",
+        "name_en": "Jinyinhu Park",
+        "inter_distance_km": 1.371,
+        "accumulated_distance_km": 7.025,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 8,
+        "name": "金银湖",
+        "name_en": "Jinyinhu",
+        "inter_distance_km": 2.391,
+        "accumulated_distance_km": 9.416,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "园博园北",
+        "name_en": "Garden Expo North",
+        "inter_distance_km": 1.748,
+        "accumulated_distance_km": 11.164,
+        "district": "Dongxihu",
+        "transfers": [
+          "7号线"
+        ]
+      },
+      {
+        "sequence": 10,
+        "name": "轻工大学",
+        "name_en": "Polytechnic Univ.",
+        "inter_distance_km": 1.202,
+        "accumulated_distance_km": 12.366,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 11,
+        "name": "常青花园",
+        "name_en": "Changqinghuayuan",
+        "inter_distance_km": 0.961,
+        "accumulated_distance_km": 13.327,
+        "district": "Dongxihu",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 12,
+        "name": "杨汊湖",
+        "name_en": "Yangchahu",
+        "inter_distance_km": 2.11,
+        "accumulated_distance_km": 15.437,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 13,
+        "name": "石桥",
+        "name_en": "Shiqiao",
+        "inter_distance_km": 0.844,
+        "accumulated_distance_km": 16.281,
+        "district": "Jianghan",
+        "transfers": [
+          "12号线"
+        ]
+      },
+      {
+        "sequence": 14,
+        "name": "唐家墩",
+        "name_en": "Tangjiadun",
+        "inter_distance_km": 1.477,
+        "accumulated_distance_km": 17.758,
+        "district": "Jianghan",
+        "transfers": [
+          "10号线"
+        ]
+      },
+      {
+        "sequence": 15,
+        "name": "三眼桥",
+        "name_en": "Sanyanqiao",
+        "inter_distance_km": 0.953,
+        "accumulated_distance_km": 18.711,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 16,
+        "name": "香港路",
+        "name_en": "Xianggang Road",
+        "inter_distance_km": 1.024,
+        "accumulated_distance_km": 19.735,
+        "district": "Jiang'an/Jianghan",
+        "transfers": [
+          "3      7号线"
+        ]
+      },
+      {
+        "sequence": 17,
+        "name": "苗栗路",
+        "name_en": "Miaoli Road",
+        "inter_distance_km": 0.864,
+        "accumulated_distance_km": 20.599,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 18,
+        "name": "大智路",
+        "name_en": "Dazhi Road",
+        "inter_distance_km": 0.804,
+        "accumulated_distance_km": 21.403,
+        "district": "Jiang'an",
+        "transfers": [
+          "1号线"
+        ]
+      },
+      {
+        "sequence": 19,
+        "name": "江汉路",
+        "name_en": "Jianghan Road",
+        "inter_distance_km": 1.553,
+        "accumulated_distance_km": 22.956,
+        "district": "Jianghan",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 20,
+        "name": "六渡桥",
+        "name_en": "Liuduqiao",
+        "inter_distance_km": 0.851,
+        "accumulated_distance_km": 23.807,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 21,
+        "name": "汉正街",
+        "name_en": "Hanzheng Street",
+        "inter_distance_km": 0.977,
+        "accumulated_distance_km": 24.784,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 22,
+        "name": "武胜路",
+        "name_en": "Wusheng Road",
+        "inter_distance_km": 0.762,
+        "accumulated_distance_km": 25.546,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 23,
+        "name": "琴台",
+        "name_en": "Qintai",
+        "inter_distance_km": 1.857,
+        "accumulated_distance_km": 27.403,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 24,
+        "name": "钟家村",
+        "name_en": "Zhongjiacun",
+        "inter_distance_km": 0.933,
+        "accumulated_distance_km": 28.336,
+        "district": "Hanyang",
+        "transfers": [
+          "4号线"
+        ]
+      },
+      {
+        "sequence": 25,
+        "name": "马鹦路",
+        "name_en": "Maying Road",
+        "inter_distance_km": 1.282,
+        "accumulated_distance_km": 29.618,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 26,
+        "name": "建港",
+        "name_en": "Jiangang",
+        "inter_distance_km": 1.478,
+        "accumulated_distance_km": 31.096,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 27,
+        "name": "前进村",
+        "name_en": "Qianjincun",
+        "inter_distance_km": 0.953,
+        "accumulated_distance_km": 32.049,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 28,
+        "name": "国博中心北",
+        "name_en": "North International Expo Center",
+        "inter_distance_km": 1.525,
+        "accumulated_distance_km": 33.574,
+        "district": "Hanyang",
+        "transfers": []
+      },
+      {
+        "sequence": 29,
+        "name": "国博中心南",
+        "name_en": "South International Expo Center",
+        "inter_distance_km": 0.756,
+        "accumulated_distance_km": 34.33,
+        "district": "Hanyang",
+        "transfers": [
+          "16      12号线"
+        ]
+      },
+      {
+        "sequence": 30,
+        "name": "老关村",
+        "name_en": "Laoguancun",
+        "inter_distance_km": 1.826,
+        "accumulated_distance_km": 36.156,
+        "district": "WETDZ [note 7]",
+        "transfers": [
+          "16号线"
+        ]
+      },
+      {
+        "sequence": 31,
+        "name": "江城大道",
+        "name_en": "Jiangcheng Boulevard",
+        "inter_distance_km": 2.805,
+        "accumulated_distance_km": 38.961,
+        "district": "WETDZ",
+        "transfers": [
+          "10号线"
+        ]
+      },
+      {
+        "sequence": 32,
+        "name": "车城东路",
+        "name_en": "Checheng East Road",
+        "inter_distance_km": 2.279,
+        "accumulated_distance_km": 41.24,
+        "district": "WETDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 33,
+        "name": "东风公司",
+        "name_en": "Dongfeng Motor Corp.",
+        "inter_distance_km": 1.297,
+        "accumulated_distance_km": 42.537,
+        "district": "WETDZ",
+        "transfers": [
+          "3号线"
+        ]
+      }
+    ]
+  },
+  {
+    "line_name": "7号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "横店",
+        "name_en": "Hengdian",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 3,
+        "name": "裕福路",
+        "name_en": "Yufu Road",
+        "inter_distance_km": 2.336,
+        "accumulated_distance_km": 2.336,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "天阳大道",
+        "name_en": "Tianyang Boulevard",
+        "inter_distance_km": 2.38,
+        "accumulated_distance_km": 4.716,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "腾龙大道",
+        "name_en": "Tenglong Boulevard",
+        "inter_distance_km": 4.479,
+        "accumulated_distance_km": 9.195,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "巨龙大道",
+        "name_en": "Julong Boulevard",
+        "inter_distance_km": 1.809,
+        "accumulated_distance_km": 11.004,
+        "district": "Huangpi",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 7,
+        "name": "汤云海路",
+        "name_en": "Tangyunhai Road",
+        "inter_distance_km": 2.524,
+        "accumulated_distance_km": 13.528,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 8,
+        "name": "马池",
+        "name_en": "Machi",
+        "inter_distance_km": 5.154,
+        "accumulated_distance_km": 18.682,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "园博园北",
+        "name_en": "Garden Expo North",
+        "inter_distance_km": 2.208,
+        "accumulated_distance_km": 20.89,
+        "district": "Dongxihu",
+        "transfers": [
+          "6号线"
+        ]
+      },
+      {
+        "sequence": 10,
+        "name": "园博园",
+        "name_en": "Garden Expo",
+        "inter_distance_km": 2.137,
+        "accumulated_distance_km": 23.027,
+        "district": "Jianghan/Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 11,
+        "name": "常码头",
+        "name_en": "Changmatou",
+        "inter_distance_km": 1.885,
+        "accumulated_distance_km": 24.912,
+        "district": "Qiaokou",
+        "transfers": []
+      },
+      {
+        "sequence": 12,
+        "name": "武汉商务区",
+        "name_en": "Wuhan Business District",
+        "inter_distance_km": 1.586,
+        "accumulated_distance_km": 26.498,
+        "district": "Jianghan",
+        "transfers": [
+          "3号线"
+        ]
+      },
+      {
+        "sequence": 13,
+        "name": "王家墩东",
+        "name_en": "Wangjiadun East",
+        "inter_distance_km": 1.482,
+        "accumulated_distance_km": 27.98,
+        "district": "Jianghan",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 14,
+        "name": "取水楼",
+        "name_en": "Qushuilou",
+        "inter_distance_km": 1.164,
+        "accumulated_distance_km": 29.144,
+        "district": "Jianghan",
+        "transfers": []
+      },
+      {
+        "sequence": 15,
+        "name": "香港路",
+        "name_en": "Xianggang Road",
+        "inter_distance_km": 1.458,
+        "accumulated_distance_km": 30.602,
+        "district": "Jianghan/Jiang'an",
+        "transfers": [
+          "3      6号线"
+        ]
+      },
+      {
+        "sequence": 16,
+        "name": "三阳路",
+        "name_en": "Sanyang Road",
+        "inter_distance_km": 1.846,
+        "accumulated_distance_km": 32.448,
+        "district": "Jiang'an",
+        "transfers": [
+          "1号线"
+        ]
+      },
+      {
+        "sequence": 17,
+        "name": "徐家棚",
+        "name_en": "Xujiapeng",
+        "inter_distance_km": 3.502,
+        "accumulated_distance_km": 35.95,
+        "district": "Wuchang",
+        "transfers": [
+          "5      8号线"
+        ]
+      },
+      {
+        "sequence": 18,
+        "name": "湖北大学",
+        "name_en": "Hubei University",
+        "inter_distance_km": 1.591,
+        "accumulated_distance_km": 37.541,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 19,
+        "name": "新河街",
+        "name_en": "Xinhe Street",
+        "inter_distance_km": 2.067,
+        "accumulated_distance_km": 39.608,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 20,
+        "name": "螃蟹岬",
+        "name_en": "Pangxiejia",
+        "inter_distance_km": 1.141,
+        "accumulated_distance_km": 40.749,
+        "district": "Wuchang",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 21,
+        "name": "小东门",
+        "name_en": "Xiaodongmen",
+        "inter_distance_km": 0.859,
+        "accumulated_distance_km": 41.608,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 22,
+        "name": "武昌火车站",
+        "name_en": "Wuchang Railway Station",
+        "inter_distance_km": 1.374,
+        "accumulated_distance_km": 42.982,
+        "district": "Wuchang",
+        "transfers": [
+          "4号线"
+        ]
+      },
+      {
+        "sequence": 23,
+        "name": "瑞安街",
+        "name_en": "Rui'an Street",
+        "inter_distance_km": 1.86,
+        "accumulated_distance_km": 44.842,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 24,
+        "name": "建安街",
+        "name_en": "Jian'an Street",
+        "inter_distance_km": 1.383,
+        "accumulated_distance_km": 46.225,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 25,
+        "name": "湖工大",
+        "name_en": "Hubei University of Technology",
+        "inter_distance_km": 2.294,
+        "accumulated_distance_km": 48.519,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 26,
+        "name": "板桥",
+        "name_en": "Banqiao",
+        "inter_distance_km": 1.067,
+        "accumulated_distance_km": 49.586,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 27,
+        "name": "野芷湖",
+        "name_en": "Yezhihu",
+        "inter_distance_km": 1.717,
+        "accumulated_distance_km": 51.303,
+        "district": "Hongshan",
+        "transfers": [
+          "8号线"
+        ]
+      },
+      {
+        "sequence": 28,
+        "name": "新路村",
+        "name_en": "Xinlucun",
+        "inter_distance_km": 2.391,
+        "accumulated_distance_km": 53.694,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 29,
+        "name": "大花岭",
+        "name_en": "Dahualing",
+        "inter_distance_km": 3.438,
+        "accumulated_distance_km": 57.132,
+        "district": "Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 30,
+        "name": "江夏客厅",
+        "name_en": "Jiangxiaketing",
+        "inter_distance_km": 2.507,
+        "accumulated_distance_km": 59.639,
+        "district": "Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 31,
+        "name": "谭鑫培公园",
+        "name_en": "Tanxinpei Park",
+        "inter_distance_km": 2.0,
+        "accumulated_distance_km": 61.639,
+        "district": "Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 32,
+        "name": "北华街",
+        "name_en": "Beihua Street",
+        "inter_distance_km": 1.61,
+        "accumulated_distance_km": 63.249,
+        "district": "Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 33,
+        "name": "纸坊大街",
+        "name_en": "Zhifang Avenue",
+        "inter_distance_km": 1.361,
+        "accumulated_distance_km": 64.61,
+        "district": "Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 34,
+        "name": "青龙山地铁小镇",
+        "name_en": "Qinglongshan Ditiexiaozhen",
+        "inter_distance_km": 3.243,
+        "accumulated_distance_km": 67.853,
+        "district": "Jiangxia",
+        "transfers": []
+      }
+    ]
+  },
+  {
+    "line_name": "8号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "金潭路",
+        "name_en": "Jintan Road",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Dongxihu",
+        "transfers": []
+      },
+      {
+        "sequence": 3,
+        "name": "宏图大道",
+        "name_en": "Hongtu Boulevard",
+        "inter_distance_km": 0.855,
+        "accumulated_distance_km": 0.855,
+        "district": "Dongxihu",
+        "transfers": [
+          "2      3号线"
+        ]
+      },
+      {
+        "sequence": 4,
+        "name": "塔子湖",
+        "name_en": "Tazihu",
+        "inter_distance_km": 1.89,
+        "accumulated_distance_km": 2.745,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "中一路",
+        "name_en": "Zhongyi Road",
+        "inter_distance_km": 1.648,
+        "accumulated_distance_km": 4.393,
+        "district": "Jiang'an",
+        "transfers": [
+          "12号线"
+        ]
+      },
+      {
+        "sequence": 6,
+        "name": "竹叶山",
+        "name_en": "Zhuyeshan",
+        "inter_distance_km": 1.574,
+        "accumulated_distance_km": 5.967,
+        "district": "Jiang'an",
+        "transfers": [
+          "10号线"
+        ]
+      },
+      {
+        "sequence": 7,
+        "name": "赵家条",
+        "name_en": "Zhaojiatiao",
+        "inter_distance_km": 1.394,
+        "accumulated_distance_km": 7.361,
+        "district": "Jiang'an",
+        "transfers": [
+          "3号线"
+        ]
+      },
+      {
+        "sequence": 8,
+        "name": "黄浦路",
+        "name_en": "Huangpu Road",
+        "inter_distance_km": 1.419,
+        "accumulated_distance_km": 8.78,
+        "district": "Jiang'an",
+        "transfers": [
+          "1号线"
+        ]
+      },
+      {
+        "sequence": 9,
+        "name": "徐家棚",
+        "name_en": "Xujiapeng",
+        "inter_distance_km": 3.494,
+        "accumulated_distance_km": 12.274,
+        "district": "Wuchang",
+        "transfers": [
+          "5      7号线"
+        ]
+      },
+      {
+        "sequence": 10,
+        "name": "徐东",
+        "name_en": "Xudong",
+        "inter_distance_km": 0.992,
+        "accumulated_distance_km": 13.266,
+        "district": "Wuchang/Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 11,
+        "name": "汪家墩",
+        "name_en": "Wangjiadun",
+        "inter_distance_km": 0.747,
+        "accumulated_distance_km": 14.013,
+        "district": "Wuchang/Hongshan",
+        "transfers": [
+          "12号线"
+        ]
+      },
+      {
+        "sequence": 12,
+        "name": "岳家嘴",
+        "name_en": "Yuejiazui",
+        "inter_distance_km": 1.318,
+        "accumulated_distance_km": 15.331,
+        "district": "Wuchang/Hongshan",
+        "transfers": [
+          "4号线"
+        ]
+      },
+      {
+        "sequence": 13,
+        "name": "梨园",
+        "name_en": "Liyuan",
+        "inter_distance_km": 0.873,
+        "accumulated_distance_km": 16.204,
+        "district": "Wuchang/Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 14,
+        "name": "省博湖北日报",
+        "name_en": "Hubei Provincial Museum & Hubei Daily",
+        "inter_distance_km": 1.881,
+        "accumulated_distance_km": 18.085,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 15,
+        "name": "中南医院",
+        "name_en": "Zhongnan Hospital",
+        "inter_distance_km": 1.326,
+        "accumulated_distance_km": 19.411,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 16,
+        "name": "水果湖",
+        "name_en": "Shuiguohu",
+        "inter_distance_km": 1.239,
+        "accumulated_distance_km": 20.65,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 17,
+        "name": "洪山路",
+        "name_en": "Hongshan Road",
+        "inter_distance_km": 0.758,
+        "accumulated_distance_km": 21.408,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 18,
+        "name": "小洪山",
+        "name_en": "Xiaohongshan",
+        "inter_distance_km": 1.812,
+        "accumulated_distance_km": 23.22,
+        "district": "Wuchang",
+        "transfers": []
+      },
+      {
+        "sequence": 19,
+        "name": "街道口",
+        "name_en": "Jiedaokou",
+        "inter_distance_km": 1.307,
+        "accumulated_distance_km": 24.527,
+        "district": "Hongshan",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 20,
+        "name": "马房山",
+        "name_en": "Mafangshan",
+        "inter_distance_km": 1.172,
+        "accumulated_distance_km": 25.699,
+        "district": "Hongshan",
+        "transfers": [
+          "11号线"
+        ]
+      },
+      {
+        "sequence": 21,
+        "name": "文治街",
+        "name_en": "Wenzhi Street",
+        "inter_distance_km": 1.7,
+        "accumulated_distance_km": 27.399,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 22,
+        "name": "文昌路",
+        "name_en": "Wenchang Road",
+        "inter_distance_km": 1.952,
+        "accumulated_distance_km": 29.351,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 23,
+        "name": "省农科院",
+        "name_en": "Hubei Academy of Agricultural Sciences",
+        "inter_distance_km": 1.686,
+        "accumulated_distance_km": 31.037,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 24,
+        "name": "马湖",
+        "name_en": "Mahu",
+        "inter_distance_km": 1.1,
+        "accumulated_distance_km": 32.137,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 25,
+        "name": "野芷湖",
+        "name_en": "Yezhihu",
+        "inter_distance_km": 1.228,
+        "accumulated_distance_km": 33.365,
+        "district": "Hongshan",
+        "transfers": [
+          "7号线"
+        ]
+      },
+      {
+        "sequence": 26,
+        "name": "黄家湖地铁小镇",
+        "name_en": "Huangjiahu Ditiexiaozhen",
+        "inter_distance_km": 3.748,
+        "accumulated_distance_km": 37.113,
+        "district": "Jiangxia",
+        "transfers": []
+      },
+      {
+        "sequence": 27,
+        "name": "军运村",
+        "name_en": "Military Athletes' Village",
+        "inter_distance_km": 1.084,
+        "accumulated_distance_km": 38.197,
+        "district": "Jiangxia",
+        "transfers": []
+      }
+    ]
+  },
+  {
+    "line_name": "11号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "武汉东站",
+        "name_en": "Wuhandong Railway Station",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "DNTDZ",
+        "transfers": [
+          "2号线"
+        ]
+      },
+      {
+        "sequence": 3,
+        "name": "湖口",
+        "name_en": "Hukou",
+        "inter_distance_km": 1.468,
+        "accumulated_distance_km": 1.468,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "光谷同济医院",
+        "name_en": "Tongji Hospital",
+        "inter_distance_km": 1.94,
+        "accumulated_distance_km": 3.408,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "光谷生物园",
+        "name_en": "Guanggushengwuyuan",
+        "inter_distance_km": 1.42,
+        "accumulated_distance_km": 4.828,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "光谷四路",
+        "name_en": "Guanggu 4th Road",
+        "inter_distance_km": 1.075,
+        "accumulated_distance_km": 5.903,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "光谷五路",
+        "name_en": "Guanggu 5th Road",
+        "inter_distance_km": 1.287,
+        "accumulated_distance_km": 7.19,
+        "district": "DNTDZ",
+        "transfers": [
+          "19号线"
+        ]
+      },
+      {
+        "sequence": 8,
+        "name": "光谷六路",
+        "name_en": "Guanggu 6th Road",
+        "inter_distance_km": 0.926,
+        "accumulated_distance_km": 8.116,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "豹澥",
+        "name_en": "Baoxie",
+        "inter_distance_km": 1.133,
+        "accumulated_distance_km": 9.249,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 10,
+        "name": "光谷七路",
+        "name_en": "Guanggu 7th Road",
+        "inter_distance_km": 1.067,
+        "accumulated_distance_km": 10.316,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 11,
+        "name": "长岭山",
+        "name_en": "Changlingshan",
+        "inter_distance_km": 2.802,
+        "accumulated_distance_km": 13.118,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 12,
+        "name": "未来一路",
+        "name_en": "Weilai 1st Road",
+        "inter_distance_km": 2.153,
+        "accumulated_distance_km": 15.271,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 13,
+        "name": "未来三路",
+        "name_en": "Weilai 3rd Road",
+        "inter_distance_km": 2.029,
+        "accumulated_distance_km": 17.3,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 14,
+        "name": "左岭",
+        "name_en": "Zuoling",
+        "inter_distance_km": 1.444,
+        "accumulated_distance_km": 18.744,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 15,
+        "name": "葛店南站",
+        "name_en": "Gediannan Railway Station",
+        "inter_distance_km": 3.786,
+        "accumulated_distance_km": 22.53,
+        "district": "Huarong, Ezhou",
+        "transfers": []
+      }
+    ]
+  },
+  {
+    "line_name": "12号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": []
+      },
+      {
+        "sequence": 2,
+        "name": "墨水湖公园",
+        "name_en": "Moshuihu Park",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Hanyang District",
+        "transfers": []
+      },
+      {
+        "sequence": 3,
+        "name": "夹套河",
+        "name_en": "Jiataohe",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Hongshan District",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "瑞安街东",
+        "name_en": "Rui'an Street East",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Wuchang District",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "园林路",
+        "name_en": "Yuanlin Road",
+        "inter_distance_km": 4.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Qingshan District",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "丹水池",
+        "name_en": "Danshuichi",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Jiang'an District",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "汉口站北广场",
+        "name_en": "North Square of Hankou Railway Station",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Jianghan District / Qiaokou District",
+        "transfers": []
+      },
+      {
+        "sequence": 8,
+        "name": "双墩",
+        "name_en": "Shuangdun",
+        "inter_distance_km": 3.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Qiaokou District",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "汉钢",
+        "name_en": "Hangang",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Hanyang District",
+        "transfers": []
+      }
+    ]
+  },
+  {
+    "line_name": "16号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "国博中心南",
+        "name_en": "South International Expo Center",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Hanyang",
+        "transfers": [
+          "6      12号线"
+        ]
+      },
+      {
+        "sequence": 3,
+        "name": "老关村",
+        "name_en": "Laoguancun",
+        "inter_distance_km": 1.57,
+        "accumulated_distance_km": 1.57,
+        "district": "WETDZ[note 8]",
+        "transfers": [
+          "6号线"
+        ]
+      },
+      {
+        "sequence": 4,
+        "name": "南太子湖",
+        "name_en": "South Taizihu",
+        "inter_distance_km": 1.971,
+        "accumulated_distance_km": 3.541,
+        "district": "",
+        "transfers": [
+          "Underground号线"
+        ]
+      },
+      {
+        "sequence": 5,
+        "name": "沌口",
+        "name_en": "Zhuankou",
+        "inter_distance_km": 2.202,
+        "accumulated_distance_km": 5.743,
+        "district": "",
+        "transfers": [
+          "Underground号线"
+        ]
+      },
+      {
+        "sequence": 6,
+        "name": "小军山",
+        "name_en": "Xiaojunshan",
+        "inter_distance_km": 8.05,
+        "accumulated_distance_km": 13.793,
+        "district": "",
+        "transfers": [
+          "Underground号线"
+        ]
+      },
+      {
+        "sequence": 7,
+        "name": "枫林",
+        "name_en": "Fenglin",
+        "inter_distance_km": 2.049,
+        "accumulated_distance_km": 15.842,
+        "district": "",
+        "transfers": [
+          "Underground号线"
+        ]
+      },
+      {
+        "sequence": 8,
+        "name": "大军山",
+        "name_en": "Dajunshan",
+        "inter_distance_km": 1.95,
+        "accumulated_distance_km": 17.792,
+        "district": "",
+        "transfers": [
+          "Underground号线"
+        ]
+      },
+      {
+        "sequence": 9,
+        "name": "桂子湖",
+        "name_en": "Guizihu",
+        "inter_distance_km": 4.42,
+        "accumulated_distance_km": 22.212,
+        "district": "",
+        "transfers": [
+          "Elevated号线"
+        ]
+      },
+      {
+        "sequence": 10,
+        "name": "马影河",
+        "name_en": "Mayinghe",
+        "inter_distance_km": 3.163,
+        "accumulated_distance_km": 25.375,
+        "district": "",
+        "transfers": [
+          "Elevated号线"
+        ]
+      },
+      {
+        "sequence": 11,
+        "name": "协子河",
+        "name_en": "Xiezihe",
+        "inter_distance_km": 1.363,
+        "accumulated_distance_km": 26.738,
+        "district": "",
+        "transfers": [
+          "Elevated号线"
+        ]
+      },
+      {
+        "sequence": 12,
+        "name": "湾湖",
+        "name_en": "Wanhu",
+        "inter_distance_km": 1.69,
+        "accumulated_distance_km": 28.428,
+        "district": "",
+        "transfers": [
+          "Elevated号线"
+        ]
+      },
+      {
+        "sequence": 13,
+        "name": "周家河",
+        "name_en": "Zhoujiahe",
+        "inter_distance_km": 3.264,
+        "accumulated_distance_km": 31.692,
+        "district": "",
+        "transfers": [
+          "Elevated号线"
+        ]
+      },
+      {
+        "sequence": 14,
+        "name": "纱帽",
+        "name_en": "Shamao",
+        "inter_distance_km": 3.197,
+        "accumulated_distance_km": 34.889,
+        "district": "",
+        "transfers": [
+          "Elevated号线"
+        ]
+      },
+      {
+        "sequence": 15,
+        "name": "通航机场",
+        "name_en": "Hannan General Airport",
+        "inter_distance_km": 1.569,
+        "accumulated_distance_km": 36.458,
+        "district": "",
+        "transfers": [
+          "Elevated号线"
+        ]
+      }
+    ]
+  },
+  {
+    "line_name": "19号线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "武汉站西广场",
+        "name_en": "West Square of Wuhan Railway Station",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Hongshan",
+        "transfers": [
+          "4[note 9]      5[note 10]号线"
+        ]
+      },
+      {
+        "sequence": 3,
+        "name": "武东",
+        "name_en": "Wudong",
+        "inter_distance_km": 4.952,
+        "accumulated_distance_km": 4.952,
+        "district": "Qingshan",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "鼓架山",
+        "name_en": "Gujiashan",
+        "inter_distance_km": 3.551,
+        "accumulated_distance_km": 8.503,
+        "district": "Hongshan",
+        "transfers": []
+      },
+      {
+        "sequence": 5,
+        "name": "花山新城",
+        "name_en": "Huashanxincheng",
+        "inter_distance_km": 4.431,
+        "accumulated_distance_km": 12.934,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "花山河",
+        "name_en": "Huashanhe",
+        "inter_distance_km": 1.981,
+        "accumulated_distance_km": 14.915,
+        "district": "DNTDZ",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "光谷五路",
+        "name_en": "Guanggu 5th Road",
+        "inter_distance_km": 6.758,
+        "accumulated_distance_km": 21.673,
+        "district": "DNTDZ",
+        "transfers": [
+          "11号线"
+        ]
+      },
+      {
+        "sequence": 8,
+        "name": "新月溪公园",
+        "name_en": "Xinyuexi Park",
+        "inter_distance_km": 1.013,
+        "accumulated_distance_km": 22.686,
+        "district": "DNTDZ",
+        "transfers": []
+      }
+    ]
+  },
+  {
+    "line_name": "阳逻线号线",
+    "stations": [
+      {
+        "sequence": 1,
+        "name": "Station name(Chinese)",
+        "name_en": "Station name(English)",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "District",
+        "transfers": [
+          "Transfers号线"
+        ]
+      },
+      {
+        "sequence": 2,
+        "name": "后湖大道",
+        "name_en": "Houhu Boulevard",
+        "inter_distance_km": 0.0,
+        "accumulated_distance_km": 0.0,
+        "district": "Jiang'an",
+        "transfers": [
+          "3号线"
+        ]
+      },
+      {
+        "sequence": 3,
+        "name": "百步亭花园路",
+        "name_en": "Baibutinghuayuan Road",
+        "inter_distance_km": 0.985,
+        "accumulated_distance_km": 0.985,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 4,
+        "name": "新荣",
+        "name_en": "Xinrong",
+        "inter_distance_km": 1.759,
+        "accumulated_distance_km": 2.744,
+        "district": "Jiang'an",
+        "transfers": [
+          "1号线"
+        ]
+      },
+      {
+        "sequence": 5,
+        "name": "幸福湾",
+        "name_en": "Xingfuwan",
+        "inter_distance_km": 2.042,
+        "accumulated_distance_km": 4.786,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 6,
+        "name": "朱家河",
+        "name_en": "Zhujiahe",
+        "inter_distance_km": 2.351,
+        "accumulated_distance_km": 7.137,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 7,
+        "name": "谌家矶",
+        "name_en": "Shenjiaji",
+        "inter_distance_km": 0.881,
+        "accumulated_distance_km": 8.018,
+        "district": "Jiang'an",
+        "transfers": []
+      },
+      {
+        "sequence": 8,
+        "name": "青龙",
+        "name_en": "Qinglong",
+        "inter_distance_km": 3.164,
+        "accumulated_distance_km": 11.182,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 9,
+        "name": "高车",
+        "name_en": "Gaoche",
+        "inter_distance_km": 2.294,
+        "accumulated_distance_km": 13.476,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 10,
+        "name": "武湖",
+        "name_en": "Wuhu",
+        "inter_distance_km": 2.23,
+        "accumulated_distance_km": 15.706,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 11,
+        "name": "沙口",
+        "name_en": "Shakou",
+        "inter_distance_km": 4.628,
+        "accumulated_distance_km": 20.334,
+        "district": "Huangpi",
+        "transfers": []
+      },
+      {
+        "sequence": 12,
+        "name": "军民村",
+        "name_en": "Junmincun",
+        "inter_distance_km": 3.785,
+        "accumulated_distance_km": 24.119,
+        "district": "Xinzhou",
+        "transfers": []
+      },
+      {
+        "sequence": 13,
+        "name": "武生院",
+        "name_en": "Wuhan Bioengineering Institute",
+        "inter_distance_km": 1.018,
+        "accumulated_distance_km": 25.137,
+        "district": "Xinzhou",
+        "transfers": []
+      },
+      {
+        "sequence": 14,
+        "name": "阳逻",
+        "name_en": "Yangluo",
+        "inter_distance_km": 2.787,
+        "accumulated_distance_km": 27.924,
+        "district": "Xinzhou",
+        "transfers": []
+      },
+      {
+        "sequence": 15,
+        "name": "阳逻开发区",
+        "name_en": "Yangluo Development Zone",
+        "inter_distance_km": 1.46,
+        "accumulated_distance_km": 29.384,
+        "district": "Xinzhou",
+        "transfers": []
+      },
+      {
+        "sequence": 16,
+        "name": "施岗",
+        "name_en": "Shigang",
+        "inter_distance_km": 3.232,
+        "accumulated_distance_km": 32.616,
+        "district": "Xinzhou",
+        "transfers": []
+      },
+      {
+        "sequence": 17,
+        "name": "金台",
+        "name_en": "Jintai",
+        "inter_distance_km": 1.959,
+        "accumulated_distance_km": 34.575,
+        "district": "Xinzhou",
+        "transfers": []
+      }
+    ]
+  }
+]

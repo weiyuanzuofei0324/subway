@@ -31,6 +31,12 @@ type TimetableTime struct {
 }
 
 func SeedTimetableData(db *gorm.DB, jsonPath string) error {
+	return db.Transaction(func(tx *gorm.DB) error {
+		return seedTimetableDataTx(tx, jsonPath)
+	})
+}
+
+func seedTimetableDataTx(tx *gorm.DB, jsonPath string) error {
 	data, err := os.ReadFile(jsonPath)
 	if err != nil {
 		return fmt.Errorf("read timetable json: %w", err)
@@ -41,56 +47,54 @@ func SeedTimetableData(db *gorm.DB, jsonPath string) error {
 		return fmt.Errorf("parse timetable json: %w", err)
 	}
 
-	return db.Transaction(func(tx *gorm.DB) error {
-		stationByName, err := loadStationsByName(tx)
-		if err != nil {
-			return err
-		}
-		stationByPinyinKey, err := loadStationsByPinyinKey(tx)
-		if err != nil {
-			return err
+	stationByName, err := loadStationsByName(tx)
+	if err != nil {
+		return err
+	}
+	stationByPinyinKey, err := loadStationsByPinyinKey(tx)
+	if err != nil {
+		return err
+	}
+
+	for _, item := range timetableData {
+		station, ok := findStationForTimetable(item, stationByName, stationByPinyinKey)
+		if !ok {
+			continue
 		}
 
-		for _, item := range timetableData {
-			station, ok := findStationForTimetable(item, stationByName, stationByPinyinKey)
-			if !ok {
+		for _, direction := range item.Directions {
+			timetable := Timetable{
+				StationID:    station.ID,
+				Direction:    strings.TrimSpace(direction.Direction),
+				WorkdayFirst: strings.TrimSpace(direction.Workday.First),
+				WorkdayLast:  strings.TrimSpace(direction.Workday.Last),
+				HolidayFirst: strings.TrimSpace(direction.Holiday.First),
+				HolidayLast:  strings.TrimSpace(direction.Holiday.Last),
+			}
+			if timetable.Direction == "" {
 				continue
 			}
 
-			for _, direction := range item.Directions {
-				timetable := Timetable{
-					StationID:    station.ID,
-					Direction:    strings.TrimSpace(direction.Direction),
-					WorkdayFirst: strings.TrimSpace(direction.Workday.First),
-					WorkdayLast:  strings.TrimSpace(direction.Workday.Last),
-					HolidayFirst: strings.TrimSpace(direction.Holiday.First),
-					HolidayLast:  strings.TrimSpace(direction.Holiday.Last),
-				}
-				if timetable.Direction == "" {
-					continue
-				}
-
-				if err := tx.Clauses(clause.OnConflict{
-					Columns: []clause.Column{{Name: "station_id"}, {Name: "direction"}},
-					DoUpdates: clause.AssignmentColumns([]string{
-						"workday_first",
-						"workday_last",
-						"holiday_first",
-						"holiday_last",
-					}),
-				}).Create(&timetable).Error; err != nil {
-					return fmt.Errorf("upsert timetable %s/%s: %w", station.Name, timetable.Direction, err)
-				}
+			if err := tx.Clauses(clause.OnConflict{
+				Columns: []clause.Column{{Name: "station_id"}, {Name: "direction"}},
+				DoUpdates: clause.AssignmentColumns([]string{
+					"workday_first",
+					"workday_last",
+					"holiday_first",
+					"holiday_last",
+				}),
+			}).Create(&timetable).Error; err != nil {
+				return fmt.Errorf("upsert timetable %s/%s: %w", station.Name, timetable.Direction, err)
 			}
 		}
+	}
 
-		return nil
-	})
+	return nil
 }
 
 func findStationForTimetable(item TimetableData, stationByName map[string]Station, stationByPinyinKey map[string]Station) (Station, bool) {
 	// 优先使用清洗后的中文站名精确匹配，这是最可靠的方式。
-	stationName := strings.TrimSpace(item.StationTitle)
+	stationName := normalizeStationName(item.StationTitle)
 	if stationName != "" && stationName != "首末班车时刻表" {
 		if station, ok := stationByName[stationName]; ok {
 			return station, true
