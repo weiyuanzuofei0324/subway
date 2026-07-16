@@ -1,0 +1,60 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: subway-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: subway
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p123456"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: subway-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SERVER_ADDR: ":8080"
+      MYSQL_DSN: "root:123456@tcp(db:3306)/subway?charset=utf8mb4&parseTime=True&loc=Local"
+      JWT_SECRET: "change-this-secret-in-production"
+    depends_on:
+      db:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+
+  seed:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: subway-seed
+    restart: "no"
+    environment:
+      MYSQL_DSN: "root:123456@tcp(db:3306)/subway?charset=utf8mb4&parseTime=True&loc=Local"
+      JWT_SECRET: "change-this-secret-in-production"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./script:/app/script
+    command:
+      [
+        "./seed",
+        "all",
+        "./script/wuhan_metro_distances.json",
+        "./script/wuhan_metro_timetable.json"
+      ]
+
+volumes:
+  mysql_data:
