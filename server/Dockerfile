@@ -1,5 +1,5 @@
 # 第一阶段：编译环境
-FROM registry.cn-hangzhou.aliyuncs.com/library/golang:1.23-alpine AS builder
+FROM docker.m.daocloud.io/library/golang:1.23-alpine AS builder
 WORKDIR /app
 ENV GOPROXY=https://goproxy.cn,direct
 
@@ -13,7 +13,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o main ./cmd/api
 RUN CGO_ENABLED=0 GOOS=linux go build -o seed ./cmd/seed
 
 # 第二阶段：运行环境（纯净无 Go 依赖的小镜像）
-FROM alpine:latest
+FROM docker.m.daocloud.io/library/alpine:latest
 RUN apk --no-cache add ca-certificates
 WORKDIR /app
 
