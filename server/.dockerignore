@@ -1,0 +1,11 @@
+.git
+.gitignore
+Dockerfile
+*.log
+tmp
+dist
+build
+coverage
+main
+seed
+*.exe
