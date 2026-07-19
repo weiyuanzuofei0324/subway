@@ -11,9 +11,7 @@ RUN --mount=type=cache,target=/go/pkg/mod go mod download
 COPY . .
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
-    CGO_ENABLED=0 GOOS=linux go build -o main ./cmd/api
-RUN --mount=type=cache,target=/go/pkg/mod \
-    --mount=type=cache,target=/root/.cache/go-build \
+    CGO_ENABLED=0 GOOS=linux go build -o main ./cmd/api && \
     CGO_ENABLED=0 GOOS=linux go build -o seed ./cmd/seed
 
 # 第二阶段：运行环境（纯净无 Go 依赖的小镜像）

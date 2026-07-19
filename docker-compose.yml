@@ -18,6 +18,7 @@ services:
 
   server:
     image: subway-backend:latest
+    pull_policy: build
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -37,6 +38,7 @@ services:
 
   seed:
     image: subway-backend:latest
+    pull_policy: build
     build:
       context: ./server
       dockerfile: Dockerfile
