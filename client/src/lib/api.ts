@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
 const extra = Constants.expoConfig?.extra as { apiUrl?: string } | undefined;
+const DEFAULT_API_URL = 'http://8.148.10.177:8080/api';
 
 function getExpoHost() {
   const hostUri = Constants.expoConfig?.hostUri ?? Constants.expoGoConfig?.debuggerHost;
@@ -21,7 +22,7 @@ function getDefaultBaseURL() {
     }
   }
 
-  return 'http://localhost:8080/api';
+  return DEFAULT_API_URL;
 }
 
 export const api = axios.create({
