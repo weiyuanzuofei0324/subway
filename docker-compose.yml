@@ -11,13 +11,14 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p123456"]
+      test:
+        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p123456"]
       interval: 5s
       timeout: 5s
       retries: 20
 
   server:
-    image: subway-backend:latest
+    image: weiyuanzuofei/subway-backend:latest
     pull_policy: build
     build:
       context: ./server
@@ -37,7 +38,7 @@ services:
         condition: service_completed_successfully
 
   seed:
-    image: subway-backend:latest
+    image: weiyuanzuofei/subway-backend:latest
     pull_policy: never
     container_name: subway-seed
     restart: "no"
@@ -54,7 +55,7 @@ services:
         "./seed",
         "all",
         "./script/wuhan_metro_distances.json",
-        "./script/wuhan_metro_timetable.json"
+        "./script/wuhan_metro_timetable.json",
       ]
 
 volumes:
