@@ -37,6 +37,9 @@ services:
 
   seed:
     image: subway-backend:latest
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     container_name: subway-seed
     restart: "no"
     environment:
