@@ -38,10 +38,7 @@ services:
 
   seed:
     image: subway-backend:latest
-    pull_policy: build
-    build:
-      context: ./server
-      dockerfile: Dockerfile
+    pull_policy: never
     container_name: subway-seed
     restart: "no"
     environment:
