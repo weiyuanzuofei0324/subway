@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { SymbolView } from 'expo-symbols';
 import {
   ActivityIndicator,
   Alert,
   Modal,
   Pressable,
   ScrollView,
-  SectionList,
   StyleSheet,
   Text,
   TextInput,
@@ -70,17 +70,18 @@ type RoutePlan = {
 };
 
 export default function TransferScreen() {
-  const sectionListRef = useRef<SectionList<StationOption, StationSection>>(null);
   const [sections, setSections] = useState<StationSection[]>([]);
   const [loading, setLoading] = useState(true);
   const [pickerVisible, setPickerVisible] = useState(false);
   const [pickingTarget, setPickingTarget] = useState<PickingTarget>('from');
+  const [selectedLineName, setSelectedLineName] = useState('');
   const [query, setQuery] = useState('');
   const [fromStation, setFromStation] = useState<StationOption | null>(null);
   const [toStation, setToStation] = useState<StationOption | null>(null);
   const [planning, setPlanning] = useState(false);
   const [plan, setPlan] = useState<RoutePlan | null>(null);
   const [departureAt, setDepartureAt] = useState('');
+  const canSubmit = Boolean(fromStation && toStation);
 
   useEffect(() => {
     let mounted = true;
@@ -145,10 +146,31 @@ export default function TransferScreen() {
       }))
       .filter((section) => section.data.length > 0);
   }, [query, sections]);
+  const pickerStationCount = useMemo(() => {
+    const stationIds = new Set<number>();
+    sections.forEach((section) => {
+      section.data.forEach((station) => stationIds.add(station.id));
+    });
+    return stationIds.size;
+  }, [sections]);
+  const activeLineName = filteredSections.some((section) => section.title === selectedLineName)
+    ? selectedLineName
+    : filteredSections[0]?.title || '';
+  const pickerStations = useMemo(() => {
+    const stationIds = new Set<number>();
+    return filteredSections.flatMap((section) => section.data).filter((station) => {
+      if (stationIds.has(station.id)) {
+        return false;
+      }
+      stationIds.add(station.id);
+      return true;
+    });
+  }, [filteredSections]);
 
   function openPicker(target: PickingTarget) {
     setPickingTarget(target);
     setQuery('');
+    setSelectedLineName(sections[0]?.title ?? '');
     setPickerVisible(true);
   }
 
@@ -159,6 +181,12 @@ export default function TransferScreen() {
       setToStation(station);
     }
     setPickerVisible(false);
+  }
+
+  // Swaps the selected terminals from the route planner controls.
+  function swapSelectedStations() {
+    setFromStation(toStation);
+    setToStation(fromStation);
   }
 
   async function submitSearch() {
@@ -186,15 +214,6 @@ export default function TransferScreen() {
     } finally {
       setPlanning(false);
     }
-  }
-
-  function jumpToSection(index: number) {
-    sectionListRef.current?.scrollToLocation({
-      animated: true,
-      itemIndex: 0,
-      sectionIndex: index,
-      viewPosition: 0,
-    });
   }
 
   if (plan && fromStation && toStation) {
@@ -290,29 +309,53 @@ export default function TransferScreen() {
   return (
     <SafeAreaView style={styles.page} edges={['top', 'left', 'right']}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <View style={styles.stationPanel}>
-          <Pressable style={styles.stationField} onPress={() => openPicker('from')}>
-            <Text style={[styles.stationLabel, fromStation && styles.stationValue]}>{fromStation?.name ?? '出发'}</Text>
+        <Text style={styles.pageTitle}>换乘规划</Text>
+
+        <View style={styles.stationCard}>
+          <Pressable style={styles.stationRowControl} onPress={() => openPicker('from')}>
+            <View style={styles.stationLead}>
+              <View style={[styles.stationDotControl, styles.startDot]} />
+              <Text style={styles.stationRole}>起点</Text>
+              <Text style={[styles.stationPlaceholder, fromStation && styles.stationPicked]} numberOfLines={1}>
+                {fromStation?.name ?? '请选择站点'}
+              </Text>
+            </View>
+            <SymbolView name={{ ios: 'chevron.right', android: 'chevron_right', web: 'chevron_right' }} size={28} tintColor="#9A9AA1" />
           </Pressable>
-          <View style={styles.swapBadge}>
-            <Text style={styles.swapText}>⇅</Text>
-          </View>
-          <Pressable style={styles.stationField} onPress={() => openPicker('to')}>
-            <Text style={[styles.stationLabel, toStation && styles.stationValue]}>{toStation?.name ?? '到达'}</Text>
+
+          <View style={styles.stationDivider} />
+
+          <Pressable style={styles.stationRowControl} onPress={() => openPicker('to')}>
+            <View style={styles.stationLead}>
+              <View style={[styles.stationDotControl, styles.endDot]} />
+              <Text style={styles.stationRole}>终点</Text>
+              <Text style={[styles.stationPlaceholder, toStation && styles.stationPicked]} numberOfLines={1}>
+                {toStation?.name ?? '请选择站点'}
+              </Text>
+            </View>
+            <SymbolView name={{ ios: 'chevron.right', android: 'chevron_right', web: 'chevron_right' }} size={28} tintColor="#9A9AA1" />
           </Pressable>
         </View>
 
-        <View style={styles.nowPanel}>
-          <Text style={styles.nowLabel}>时刻</Text>
-          <Text style={styles.nowText}>现在出发</Text>
-        </View>
+        <View style={styles.actionRow}>
+          <Pressable
+            style={({ pressed }) => [styles.swapButton, pressed && styles.pressed]}
+            onPress={swapSelectedStations}>
+            <SymbolView name={{ ios: 'arrow.up.arrow.down', android: 'swap_vert', web: 'swap_vert' }} size={34} tintColor="#A8A8AD" />
+          </Pressable>
 
-        <Pressable
-          disabled={planning}
-          style={({ pressed }) => [styles.searchButton, (pressed || planning) && styles.pressed]}
-          onPress={submitSearch}>
-          <Text style={styles.searchButtonText}>{planning ? '查询中' : '换乘查询'}</Text>
-        </Pressable>
+          <Pressable
+            disabled={planning || !canSubmit}
+            style={({ pressed }) => [
+              styles.searchButton,
+              canSubmit && styles.searchButtonReady,
+              (pressed || planning) && styles.pressed,
+            ]}
+            onPress={submitSearch}>
+            <SymbolView name={{ ios: 'arrow.triangle.swap', android: 'sync_alt', web: 'sync_alt' }} size={30} tintColor={canSubmit ? '#FFFFFF' : '#C7C7CC'} />
+            <Text style={[styles.searchButtonText, canSubmit && styles.searchButtonTextReady]}>{planning ? '查询中' : '查询路线'}</Text>
+          </Pressable>
+        </View>
 
         {plan ? (
           <View style={styles.resultPanel}>
@@ -375,73 +418,66 @@ export default function TransferScreen() {
         ) : null}
       </ScrollView>
 
-      <Modal animationType="slide" visible={pickerVisible} onRequestClose={() => setPickerVisible(false)}>
-        <SafeAreaView style={styles.pickerPage} edges={['top', 'left', 'right']}>
-          <View style={styles.searchRow}>
-            <TextInput
-              autoFocus
-              placeholder="搜索车站..."
-              placeholderTextColor="#64748B"
-              value={query}
-              onChangeText={setQuery}
-              style={styles.searchInput}
-            />
-            <Pressable style={styles.closeButton} onPress={() => setPickerVisible(false)}>
-              <Text style={styles.closeText}>×</Text>
-            </Pressable>
-          </View>
-
-          {loading ? (
-            <View style={styles.loadingBox}>
-              <ActivityIndicator color="#0F766E" />
-              <Text style={styles.loadingText}>正在加载站点...</Text>
-            </View>
-          ) : (
-            <View style={styles.pickerBody}>
-              <SectionList
-                ref={sectionListRef}
-                sections={filteredSections}
-                keyExtractor={(item) => `${item.route.id}-${item.id}`}
-                stickySectionHeadersEnabled={false}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.stationListContent}
-                renderSectionHeader={({ section }) => (
-                  <Text style={[styles.sectionTitle, { color: section.color }]}>{section.title}</Text>
-                )}
-                renderItem={({ item }) => (
-                  <Pressable style={({ pressed }) => [styles.stationItem, pressed && styles.stationItemPressed]} onPress={() => selectStation(item)}>
-                    <Text style={styles.stationItemText}>{item.name}</Text>
-                    {getTransferRoutes(item).map((route) => (
-                      <View key={route.id} style={[styles.transferBadge, { backgroundColor: route.color }]}>
-                        <Text style={styles.transferBadgeText}>{formatLineNumber(route.lineName)}</Text>
-                      </View>
-                    ))}
-                  </Pressable>
-                )}
-                getItemLayout={(_, index) => ({
-                  length: 74,
-                  offset: 74 * index,
-                  index,
-                })}
+      <Modal animationType="slide" transparent visible={pickerVisible} onRequestClose={() => setPickerVisible(false)}>
+        <View style={styles.pickerOverlay}>
+          <Pressable style={styles.pickerBackdrop} onPress={() => setPickerVisible(false)} />
+          <SafeAreaView style={styles.pickerSheet} edges={['left', 'right', 'bottom']}>
+            <View style={styles.pickerHandle} />
+            <Text style={styles.pickerTitle}>{pickingTarget === 'from' ? '选择起点' : '选择终点'}</Text>
+            <View style={styles.searchBox}>
+              <SymbolView name={{ ios: 'magnifyingglass', android: 'search', web: 'search' }} size={34} tintColor="#8E8E95" />
+              <TextInput
+                autoFocus
+                placeholder="搜索站点..."
+                placeholderTextColor="#9B9BA3"
+                value={query}
+                onChangeText={setQuery}
+                style={styles.searchInput}
               />
-
-              <View style={styles.lineIndex}>
-                {filteredSections.map((section, index) => (
-                  <Pressable key={section.title} onPress={() => jumpToSection(index)} hitSlop={6}>
-                    <Text style={styles.lineIndexText}>{formatLineNumber(section.title)}</Text>
-                  </Pressable>
-                ))}
-              </View>
             </View>
-          )}
-        </SafeAreaView>
+
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.lineTabsScroller}
+              contentContainerStyle={styles.lineTabs}>
+              {filteredSections.map((section) => (
+                <Pressable
+                  key={section.title}
+                  style={({ pressed }) => [styles.lineTab, section.title === activeLineName && styles.lineTabActive, pressed && styles.pressed]}
+                  onPress={() => setSelectedLineName(section.title)}>
+                  <Text style={[styles.lineTabText, section.title === activeLineName && styles.lineTabTextActive]}>{section.title}</Text>
+                </Pressable>
+              ))}
+            </ScrollView>
+
+            <Text style={styles.stationCount}>{pickerStationCount} 个站点</Text>
+
+            {loading ? (
+              <View style={styles.loadingBox}>
+                <ActivityIndicator color="#168CFF" />
+                <Text style={styles.loadingText}>正在加载站点...</Text>
+              </View>
+            ) : (
+              <View style={styles.pickerBody}>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.stationListContent}>
+                  {pickerStations.map((station) => (
+                    <Pressable
+                      key={`${station.route.id}-${station.id}`}
+                      style={({ pressed }) => [styles.stationItem, pressed && styles.stationItemPressed]}
+                      onPress={() => selectStation(station)}>
+                      <Text style={styles.stationItemText}>{station.name}</Text>
+                      <Text style={styles.stationItemLine}>{station.route.lineName}</Text>
+                    </Pressable>
+                  ))}
+                </ScrollView>
+              </View>
+            )}
+          </SafeAreaView>
+        </View>
       </Modal>
     </SafeAreaView>
   );
-}
-
-function getTransferRoutes(station: Station) {
-  return station.transferRoutes ?? [];
 }
 
 function formatLineNumber(lineName: string) {
@@ -468,7 +504,7 @@ function currentClockTime() {
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F8F8F9',
     flex: 1,
   },
   resultPage: {
@@ -611,114 +647,163 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingBottom: 34,
-    paddingHorizontal: 30,
-    paddingTop: 86,
+    paddingHorizontal: 20,
+    paddingTop: 54,
   },
-  stationPanel: {
-    backgroundColor: '#ECEEF4',
-    borderRadius: 8,
+  // Route picker header mirrors the compact start/end card used before querying.
+  pageTitle: {
+    color: '#111111',
+    fontSize: 30,
+    fontWeight: '900',
+    lineHeight: 38,
+    marginBottom: 26,
+  },
+  stationCard: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#ECECEE',
+    borderRadius: 14,
+    borderWidth: 1,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
     overflow: 'hidden',
   },
-  stationField: {
-    height: 92,
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-  },
-  stationLabel: {
-    color: '#8A96A3',
-    fontSize: 28,
-    fontWeight: '900',
-  },
-  stationValue: {
-    color: '#111827',
-  },
-  swapBadge: {
+  stationRowControl: {
     alignItems: 'center',
-    alignSelf: 'flex-start',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 18,
-    height: 36,
-    justifyContent: 'center',
-    marginLeft: 32,
-    marginVertical: -18,
-    width: 36,
-    zIndex: 1,
-  },
-  swapText: {
-    color: '#9AA5B1',
-    fontSize: 24,
-    fontWeight: '900',
-  },
-  nowPanel: {
-    alignItems: 'center',
-    backgroundColor: '#ECEEF4',
-    borderRadius: 8,
     flexDirection: 'row',
-    height: 90,
+    height: 52,
     justifyContent: 'space-between',
-    marginTop: 24,
-    paddingHorizontal: 24,
+    paddingLeft: 28,
+    paddingRight: 22,
   },
-  nowLabel: {
-    color: '#8A96A3',
-    fontSize: 26,
-    fontWeight: '900',
+  stationLead: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    paddingRight: 16,
   },
-  nowText: {
+  stationDotControl: {
+    borderRadius: 5,
+    height: 10,
+    marginRight: 14,
+    width: 10,
+  },
+  startDot: {
+    backgroundColor: '#00C853',
+  },
+  endDot: {
+    backgroundColor: '#FF1E2D',
+  },
+  stationRole: {
+    color: '#909098',
+    fontSize: 14,
+    fontWeight: '700',
+    marginRight: 16,
+  },
+  stationPlaceholder: {
+    color: '#9B9BA3',
+    flex: 1,
+    fontSize: 20,
+    fontWeight: '500',
+  },
+  stationPicked: {
     color: '#111827',
-    fontSize: 28,
-    fontWeight: '900',
+    fontWeight: '800',
+  },
+  stationDivider: {
+    backgroundColor: '#ECECEE',
+    height: 1,
+    marginLeft: 114,
+  },
+  actionRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 13,
+    marginTop: 16,
+  },
+  swapButton: {
+    alignItems: 'center',
+    backgroundColor: '#F8F8F9',
+    borderColor: '#A9A9AE',
+    borderRadius: 24,
+    borderWidth: 1.5,
+    height: 48,
+    justifyContent: 'center',
+    width: 48,
   },
   searchButton: {
     alignItems: 'center',
-    backgroundColor: '#2FB5A0',
-    borderRadius: 8,
-    height: 90,
+    backgroundColor: '#E3E3E5',
+    borderRadius: 12,
+    flex: 1,
+    flexDirection: 'row',
+    gap: 12,
+    height: 48,
     justifyContent: 'center',
-    marginTop: 24,
+  },
+  searchButtonReady: {
+    backgroundColor: '#168CFF',
   },
   searchButtonText: {
-    color: '#FFFFFF',
-    fontSize: 30,
+    color: '#C7C7CC',
+    fontSize: 20,
     fontWeight: '900',
+  },
+  searchButtonTextReady: {
+    color: '#FFFFFF',
   },
   pressed: {
     opacity: 0.72,
   },
-  pickerPage: {
-    backgroundColor: '#FFFFFF',
+  // Station picker uses a dimmed page overlay with a rounded bottom sheet.
+  pickerOverlay: {
     flex: 1,
   },
-  searchRow: {
+  pickerBackdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.32)',
+    flex: 1,
+  },
+  pickerSheet: {
+    backgroundColor: '#FFFFFF',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    height: '50%',
+    overflow: 'hidden',
+    paddingHorizontal: 16,
+    paddingTop: 40,
+  },
+  pickerHandle: {
+    alignSelf: 'center',
+    backgroundColor: '#9E9EA4',
+    borderRadius: 3,
+    height: 6,
+    position: 'absolute',
+    top: 17,
+    width: 70,
+  },
+  pickerTitle: {
+    color: '#111111',
+    fontSize: 23,
+    fontWeight: '900',
+    lineHeight: 30,
+    marginBottom: 16,
+  },
+  searchBox: {
     alignItems: 'center',
-    borderBottomColor: '#ECEFF3',
-    borderBottomWidth: 1,
+    borderColor: '#E5E5EA',
+    borderRadius: 14,
+    borderWidth: 1.5,
     flexDirection: 'row',
-    gap: 18,
-    paddingBottom: 24,
-    paddingHorizontal: 24,
-    paddingTop: 18,
+    height: 46,
+    paddingHorizontal: 18,
   },
   searchInput: {
-    backgroundColor: '#ECEEF4',
-    borderRadius: 8,
     color: '#111827',
     flex: 1,
-    fontSize: 24,
-    height: 72,
-    paddingHorizontal: 24,
-  },
-  closeButton: {
-    alignItems: 'center',
-    height: 52,
-    justifyContent: 'center',
-    width: 52,
-  },
-  closeText: {
-    color: '#747B84',
-    fontSize: 48,
-    fontWeight: '300',
-    lineHeight: 52,
+    fontSize: 18,
+    marginLeft: 12,
   },
   loadingBox: {
     alignItems: 'center',
@@ -733,34 +818,62 @@ const styles = StyleSheet.create({
   pickerBody: {
     flex: 1,
   },
+  lineTabs: {
+    gap: 7,
+    paddingTop: 8,
+  },
+  lineTabsScroller: {
+    flexGrow: 0,
+    height: 50,
+    marginBottom: 14,
+    marginTop: 14,
+  },
+  lineTab: {
+    alignItems: 'center',
+    borderColor: '#E6E6EA',
+    borderRadius: 8,
+    borderWidth: 1.5,
+    height: 34,
+    justifyContent: 'center',
+    minWidth: 68,
+    paddingHorizontal: 14,
+  },
+  lineTabActive: {
+    backgroundColor: '#EFEFF1',
+  },
+  lineTabText: {
+    color: '#8F8F96',
+    fontSize: 17,
+    fontWeight: '800',
+  },
+  lineTabTextActive: {
+    color: '#8A8A90',
+  },
+  stationCount: {
+    color: '#8F8F96',
+    fontSize: 14,
+    marginBottom: 12,
+  },
   stationListContent: {
     paddingBottom: 36,
-    paddingLeft: 24,
-    paddingRight: 70,
-    paddingTop: 28,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '900',
-    marginBottom: 8,
-    marginTop: 6,
-    paddingHorizontal: 24,
   },
   stationItem: {
-    alignItems: 'center',
-    borderBottomColor: '#ECEFF3',
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    minHeight: 74,
-    paddingHorizontal: 24,
+    justifyContent: 'center',
+    minHeight: 64,
+    paddingLeft: 28,
   },
   stationItemPressed: {
     backgroundColor: '#F8FAFC',
   },
   stationItemText: {
-    color: '#1F2937',
-    flex: 1,
-    fontSize: 26,
+    color: '#111111',
+    fontSize: 22,
+    fontWeight: '900',
+  },
+  stationItemLine: {
+    color: '#8F8F96',
+    fontSize: 16,
+    marginTop: 4,
   },
   transferBadge: {
     alignItems: 'center',
@@ -775,18 +888,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '900',
-  },
-  lineIndex: {
-    gap: 10,
-    position: 'absolute',
-    right: 16,
-    top: 310,
-  },
-  lineIndexText: {
-    color: '#006CFF',
-    fontSize: 20,
-    fontWeight: '900',
-    textAlign: 'center',
   },
   resultPanel: {
     marginTop: 28,

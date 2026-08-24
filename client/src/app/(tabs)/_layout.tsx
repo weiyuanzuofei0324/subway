@@ -24,16 +24,26 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: blue,
+        tabBarActiveBackgroundColor: '#E8F4FF',
         tabBarInactiveTintColor: inactive,
         tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: '600',
+          fontSize: 14,
+          fontWeight: '800',
+        },
+        // Keeps the main navigation close to the rounded mobile tab surface.
+        tabBarItemStyle: {
+          borderRadius: 28,
+          marginHorizontal: 5,
+          marginVertical: 8,
+          paddingVertical: 6,
         },
         tabBarStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: '#F7F8FC',
           borderTopColor: '#edf0f5',
-          height: 68,
-          paddingBottom: 10,
+          borderTopWidth: 1,
+          height: 88,
+          paddingBottom: 14,
+          paddingHorizontal: 20,
           paddingTop: 8,
         },
       }}>
@@ -47,21 +57,21 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="lines"
         options={{
-          title: '线路站点',
+          title: '线路',
           tabBarIcon: ({ color }) => <TabIcon name="lines" color={color} />,
         }}
       />
       <Tabs.Screen
         name="transfer"
         options={{
-          title: '换乘信息',
+          title: '换乘',
           tabBarIcon: ({ color }) => <TabIcon name="transfer" color={color} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          title: '个人信息',
+          title: '我的',
           tabBarIcon: ({ color }) => <TabIcon name="profile" color={color} />,
         }}
       />

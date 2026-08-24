@@ -35,6 +35,13 @@ function clampScale(value: number) {
   return Math.min(Math.max(value, MIN_SCALE), MAX_SCALE);
 }
 
+// Keeps the scaled map covering the visible viewport without drifting away.
+function clampOffset(value: number, viewportSize: number, contentSize: number, currentScale: number) {
+  'worklet';
+  const maxOffset = Math.max(0, (contentSize * currentScale - viewportSize) / 2);
+  return Math.min(Math.max(value, -maxOffset), maxOffset);
+}
+
 function MapButton({
   icon,
   label,
@@ -110,13 +117,14 @@ export function SubwayMapViewer({
 
   const gestures = useMemo(() => {
     const pan = Gesture.Pan()
+      .maxPointers(1)
       .onBegin(() => {
         startTranslateX.value = translateX.value;
         startTranslateY.value = translateY.value;
       })
       .onUpdate((event) => {
-        translateX.value = startTranslateX.value + event.translationX;
-        translateY.value = startTranslateY.value + event.translationY;
+        translateX.value = clampOffset(startTranslateX.value + event.translationX, layout.width, mapSize.width, scale.value);
+        translateY.value = clampOffset(startTranslateY.value + event.translationY, layout.height, mapSize.height, scale.value);
       });
 
     const pinch = Gesture.Pinch()
@@ -132,14 +140,26 @@ export function SubwayMapViewer({
         const originY = event.focalY - layout.height / 2;
 
         scale.value = nextScale;
-        translateX.value = originX - (originX - startTranslateX.value) * ratio;
-        translateY.value = originY - (originY - startTranslateY.value) * ratio;
+        translateX.value = clampOffset(
+          originX - (originX - startTranslateX.value) * ratio,
+          layout.width,
+          mapSize.width,
+          nextScale,
+        );
+        translateY.value = clampOffset(
+          originY - (originY - startTranslateY.value) * ratio,
+          layout.height,
+          mapSize.height,
+          nextScale,
+        );
       });
 
     return Gesture.Simultaneous(pan, pinch);
   }, [
     layout.height,
     layout.width,
+    mapSize.height,
+    mapSize.width,
     scale,
     startScale,
     startTranslateX,
@@ -154,7 +174,10 @@ export function SubwayMapViewer({
   }
 
   function zoomBy(factor: number) {
-    scale.value = withTiming(clampScale(scale.value * factor), { duration: 180 });
+    const nextScale = clampScale(scale.value * factor);
+    scale.value = withTiming(nextScale, { duration: 180 });
+    translateX.value = withTiming(clampOffset(translateX.value, layout.width, mapSize.width, nextScale), { duration: 180 });
+    translateY.value = withTiming(clampOffset(translateY.value, layout.height, mapSize.height, nextScale), { duration: 180 });
   }
 
   function resetMap() {
